@@ -1,0 +1,5 @@
+<h3>Here are your groups:</h3>
+
+<% current_user.groups.each do |g| %>
+  <li><%= g.name %></li>
+<% end %><br>

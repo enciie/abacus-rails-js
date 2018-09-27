@@ -1,8 +1,4 @@
 <h1><%= current_user.username%> Home Page</h1>
 
-<h3>Here are your groups:</h3>
-<% current_user.groups.each do |g| %>
-  <li><%= g.name %></li>
-<% end %><br>
-
-<%= link_to "Create A Group", new_group_path%>
+<%= link_to "See all Groups", groups_path %><br>
+<%= link_to "Create A Group", new_group_path %>
