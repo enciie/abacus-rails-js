@@ -2,6 +2,6 @@
   <%= f.label :description %><br>
   <%= f.text_field :description %><br>
   <%= f.label :amount %><br>
-  <%= f.number_field :amount %><br><br>
+  <%= f.number_field :amount, value: number_to_currency(f.object.amount.to_f, delimiter: '', unit: ''), step: :any %><br><br>
   <%= f.submit %><br>
 <% end %>

@@ -28,6 +28,7 @@ class ExpensesController < ApplicationController
   end
 
   def update
+    raise params.inspect
     @group = Group.find_by(id: params[:group_id])
   end
 
