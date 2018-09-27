@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
 
   resources :users, only: [:create, :show, :edit, :update]
-
+  resources :groups
 end

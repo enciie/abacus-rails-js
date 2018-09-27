@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
-      # Sends user back to the login form
+      # Sends user back to the login/signup root page
       redirect_to root_path
     end
   end
