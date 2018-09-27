@@ -28,8 +28,14 @@ class ExpensesController < ApplicationController
   end
 
   def update
-    raise params.inspect
     @group = Group.find_by(id: params[:group_id])
+    @expense = Expense.find(params[:id])
+    if @expense.update(expense_params)
+      @expense.save
+      redirect_to @group
+    else
+      render 'edit'
+    end
   end
 
   def destroy
