@@ -11,7 +11,7 @@ class ExpensesController < ApplicationController
     @expense = @group.expenses.new(expense_params)
     @expense.user_id = current_user.id
     if @expense.save
-      redirect_to @group
+      redirect_to @group #Group show page
     else
       render 'new'
     end
@@ -24,6 +24,7 @@ class ExpensesController < ApplicationController
 
   def edit
     @group = Group.find_by(id: params[:group_id])
+    @expense = Expense.find(params[:id])
   end
 
   def update
