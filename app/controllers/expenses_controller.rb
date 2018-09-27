@@ -1,5 +1,5 @@
 class ExpensesController < ApplicationController
-  before_action :authenticate_user, only: [:index, :create, :edit, :upate, :destroy]
+  before_action :authenticate_user
 
   def new
     @group = Group.find_by(id: params[:group_id])
@@ -7,7 +7,37 @@ class ExpensesController < ApplicationController
   end
 
   def create
-    raise params.inspect
+    @group = Group.find_by(id: params[:group_id])
+    @expense = @group.expenses.new(expense_params)
+    @expense.user_id = current_user.id
+    if @expense.save
+      redirect_to @group
+    else
+      render 'new'
+    end
+  end
+
+  def show
+    @group = Group.find_by(id: params[:group_id])
+    @expense = Expense.find(params[:id])
+  end
+
+  def edit
+    @group = Group.find_by(id: params[:group_id])
+  end
+
+  def update
+    @group = Group.find_by(id: params[:group_id])
+  end
+
+  def destroy
+    @group = Group.find_by(id: params[:group_id])
+  end
+
+  private
+
+  def expense_params
+    params.require(:expense).permit(:description, :amount, :group_id, :user_id)
   end
 
 end

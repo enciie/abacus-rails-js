@@ -1,5 +1,7 @@
 <h1><%= @group.name %></h1>
 
-<p>list of all  expenses</p>
+<% @group.expenses.each do |e| %>
+  <p><%= e.description %>, <%= e.amount %></p>
+<% end %>
 
 <p>Link to create expenses</p>
