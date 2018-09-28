@@ -1,4 +1,6 @@
 <h1><%= current_user.username%> Home Page</h1>
 
+<h4>Number of Groups you currently have: <%= group_count %></h4>
+
 <%= link_to "See all Groups", groups_path %><br>
 <%= link_to "Create A New Group", new_group_path %>

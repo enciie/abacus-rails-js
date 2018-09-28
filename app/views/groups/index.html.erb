@@ -4,4 +4,5 @@
   <li><%= group.name%>, <%= link_to "View Group", group_expenses_path(group)%> <%= link_to "Edit Group", edit_group_path(group)%>, <%= link_to "Delete Group", group_path(group), method: :delete, data: { confirm: "Are you sure?" } %></li>
 <% end %><br>
 
-<%= link_to "Create A New Group", new_group_path %>
+<%= link_to "Create A New Group", new_group_path %><br>
+<%= link_to "Home Page", user_path(current_user)%>
