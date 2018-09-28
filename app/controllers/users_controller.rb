@@ -25,10 +25,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:username, :email, :password)
   end
 
-  def group_count
-    current_user.groups.count
-  end
-  helper_method :group_count
-
-
 end
