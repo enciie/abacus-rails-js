@@ -1,7 +1,7 @@
 <h3>Here are your groups:</h3>
 
 <% current_user.groups.each do |group| %>
-  <li><%= link_to "#{group.name}", group_path(group) %></li>
+  <li><%= group.name%>, <%= link_to "View Group", group_path(group) %>, <%= link_to "Delete", group_path(group), method: :delete, data: { confirm: "Are you sure?" } %></li>
 <% end %><br>
 
 <%= link_to "Create A New Group", new_group_path %>
