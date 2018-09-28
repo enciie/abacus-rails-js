@@ -26,7 +26,6 @@ class ExpensesController < ApplicationController
     @group = Group.find_by(id: params[:group_id])
     @expense = @group.expenses.new(expense_params)
     @expense.user_id = current_user.id
-    raise params.inspect
     if @expense.save
       redirect_to group_expenses_path(@group) #Group/expense show page
     else
