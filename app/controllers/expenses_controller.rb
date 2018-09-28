@@ -2,13 +2,23 @@ class ExpensesController < ApplicationController
   before_action :authenticate_user
 
   def index
-    @group = Group.find_by(id: params[:group_id])
-    @expenses = @group.expenses
+    if params[:group_id]
+      @group = Group.find_by(id: params[:group_id])
+      if @group.nil?
+        redirect_to user_path(current_user)
+      else
+        @expenses = @group.expenses
+      end
+    end
   end
 
   def new
-    @group = Group.find_by(id: params[:group_id])
-    @expense = Expense.new
+    if params[:group_id] && !Group.exists?(params[:group_id])
+      redirect_to user_path(current_user)
+    else
+      @group = Group.find_by(id: params[:group_id])
+      @expense = Expense.new(group_id: params[:group_id])
+    end
   end
 
   def create
@@ -23,13 +33,29 @@ class ExpensesController < ApplicationController
   end
 
   def show
+    if params[:group_id]
     @group = Group.find_by(id: params[:group_id])
-    @expense = Expense.find(params[:id])
+    @expense = @group.expenses.find_by(id: params[:id])
+      if @expense.nil?
+        redirect_to user_path(current_user)
+      end
+    else
+      @expense = Expense.find(params[:id])
+    end
   end
 
   def edit
-    @group = Group.find_by(id: params[:group_id])
-    @expense = Expense.find(params[:id])
+    if params[:group_id]
+      group = Group.find_by(id: params[:group_id])
+      if group.nil?
+        redirect_to user_path(current_user), alert: "Group Not Found"
+      else
+        @expense = group.expenses.find_by(id: params[:id])
+        redirect_to user_path(current_user), alert: "Expense Not Found" if @expense.nil?
+      end
+    else
+      @expense = Expense.find(params[:id])
+    end
   end
 
   def update
