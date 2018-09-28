@@ -2,6 +2,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def home
+    if logged_in?
+      redirect_to user_path(current_user)
+    end
   end
 
   private
