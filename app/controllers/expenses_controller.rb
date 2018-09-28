@@ -40,6 +40,10 @@ class ExpensesController < ApplicationController
 
   def destroy
     @group = Group.find_by(id: params[:group_id])
+    @expense = Expense.find(params[:id])
+    if @task.delete
+      redirect_to @group
+    end
   end
 
   private

@@ -1,7 +1,7 @@
 <h3>Here are your groups:</h3>
 
-<% current_user.groups.each do |g| %>
-  <li><%= g.name %></li>
+<% current_user.groups.each do |group| %>
+  <li><%= link_to "#{group.name}", group_path(group) %></li>
 <% end %><br>
 
 <%= link_to "Create A New Group", new_group_path %>
