@@ -9,8 +9,13 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
+  #omniauth login
+  get '/auth/:provider/callback' => 'sessions#create'
+
   resources :users, only: [:create, :show, :edit, :update]
+
   resources :groups, except: [:show]  do
     resources :expenses, except: [:show]
   end
+
 end
