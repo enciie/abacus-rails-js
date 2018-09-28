@@ -1,4 +1,6 @@
 <h1><%= @group.name %></h1>
+<%= last_updated @group %><br><br>
+
 <% if @expenses.empty? %>
   <p>There are no expenses for this group</p>
 <% else %>
