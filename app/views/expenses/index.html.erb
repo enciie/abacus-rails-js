@@ -1,0 +1,7 @@
+<h1><%= @group.name %></h1>
+
+<% @group.expenses.each do |expense| %>
+  <p><%= expense.description %>, $<%= expense.amount %>, <%= link_to "edit", edit_group_expense_path(@group, expense.id) %>, <%= link_to "Delete", group_expense_path(expense), method: :delete, data: { confirm: "Are you sure?" } %></p>
+<% end %>
+
+<p><%= link_to "Add A New Expense", new_group_expense_path(@group)%></p>
