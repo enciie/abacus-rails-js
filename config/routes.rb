@@ -18,4 +18,6 @@ Rails.application.routes.draw do
     resources :expenses, except: [:show]
   end
 
+  resources :category, only: [:show]
+
 end

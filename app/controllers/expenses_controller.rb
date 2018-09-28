@@ -18,6 +18,7 @@ class ExpensesController < ApplicationController
     else
       @group = Group.find_by(id: params[:group_id])
       @expense = Expense.new(group_id: params[:group_id])
+      @categories= Category.all.map{|c| [ c.name, c.id ] }
     end
   end
 
@@ -25,6 +26,7 @@ class ExpensesController < ApplicationController
     @group = Group.find_by(id: params[:group_id])
     @expense = @group.expenses.new(expense_params)
     @expense.user_id = current_user.id
+    raise params.inspect
     if @expense.save
       redirect_to group_expenses_path(@group) #Group/expense show page
     else
@@ -55,12 +57,14 @@ class ExpensesController < ApplicationController
       end
     else
       @expense = Expense.find(params[:id])
+      @categories = Category.all.map{|c| [ c.name, c.id ] }
     end
   end
 
   def update
     @group = Group.find_by(id: params[:group_id])
     @expense = Expense.find(params[:id])
+    @expense.category_id = params[:expense][:category_id]
     if @expense.update(expense_params)
       @expense.save
       redirect_to group_expenses_path(@group)
@@ -80,7 +84,7 @@ class ExpensesController < ApplicationController
   private
 
   def expense_params
-    params.require(:expense).permit(:description, :amount, :group_id, :user_id)
+    params.require(:expense).permit(:description, :amount, :group_id, :user_id, :category_name)
   end
 
 end

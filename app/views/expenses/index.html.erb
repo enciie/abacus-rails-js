@@ -8,7 +8,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th colspan="4"></th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
@@ -16,6 +16,7 @@
     <tr>
       <td><strong>Description</strong></td>
       <td><strong>Amount</strong></td>
+      <td><strong>Category</strong></td>
       <td><strong>Edit</strong></td>
       <td><strong>Delete</strong></td>
     </tr>
@@ -24,6 +25,7 @@
       <tr>
         <td><%= expense.description%></td>
         <td>$<%= expense.amount %></td>
+        <td><%= expense.category_id %></td>
         <td><%= link_to "Edit", edit_group_expense_path(@group, expense.id) %></td>
         <td><%= link_to "Delete", group_expense_path(@group, expense.id), method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
