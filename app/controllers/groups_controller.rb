@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   def index
-    @groups = Group.all
+    @groups = current_user.groups
   end
 
   def new
@@ -14,7 +14,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.user_id = session[:user_id]
     if @group.save
-      redirect_to group_expenses_path(@group)
+      redirect_to groups_path
     else
       render 'new'
     end

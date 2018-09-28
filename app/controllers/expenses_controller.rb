@@ -46,11 +46,11 @@ class ExpensesController < ApplicationController
 
   def edit
     if params[:group_id]
-      group = Group.find_by(id: params[:group_id])
-      if group.nil?
+      @group = Group.find_by(id: params[:group_id])
+      if @group.nil?
         redirect_to user_path(current_user), alert: "Group Not Found"
       else
-        @expense = group.expenses.find_by(id: params[:id])
+        @expense = @group.expenses.find_by(id: params[:id])
         redirect_to user_path(current_user), alert: "Expense Not Found" if @expense.nil?
       end
     else
