@@ -18,7 +18,6 @@ class ExpensesController < ApplicationController
     else
       @group = Group.find_by(id: params[:group_id])
       @expense = Expense.new(group_id: params[:group_id])
-      @categories= Category.all.map{|c| [ c.name, c.id ] }
     end
   end
 
@@ -37,6 +36,7 @@ class ExpensesController < ApplicationController
     if params[:group_id]
     @group = Group.find_by(id: params[:group_id])
     @expense = @group.expenses.find_by(id: params[:id])
+    @expense.category_id = params[:expense][:category_id]
       if @expense.nil?
         redirect_to user_path(current_user)
       end
@@ -63,7 +63,7 @@ class ExpensesController < ApplicationController
   def update
     @group = Group.find_by(id: params[:group_id])
     @expense = Expense.find(params[:id])
-    @expense.category_id = params[:expense][:category_id]
+    @expense.category_name = params[:expense][:category_name]
     if @expense.update(expense_params)
       @expense.save
       redirect_to group_expenses_path(@group)

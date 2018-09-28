@@ -1,5 +1,5 @@
 module ExpensesHelper
-  
+
   def total(expenses)
     @total = []
     expenses.each do |expense|

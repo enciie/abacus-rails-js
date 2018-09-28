@@ -24,17 +24,17 @@
     <%@expenses.each do |expense|%>
       <tr>
         <td><%= expense.description%></td>
-        <td>$<%= expense.amount %></td>
+        <td>$<%= ('%.2f' % expense.amount) %></td>
         <td><%= expense.category_name %></td>
-        <td><%= link_to "Edit", edit_group_expense_path(@group, expense.id) %></td>
-        <td><%= link_to "Delete", group_expense_path(@group, expense.id), method: :delete, data: { confirm: "Are you sure?" } %></td>
+        <td><%= link_to "Edit", edit_group_expense_path(expense.group_id, expense.id) %></td>
+        <td><%= link_to "Delete", group_expense_path(expense.group_id, expense.id), method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <%end %>
   </tbody>
 </table>
 <%end %>
 
-<h3><strong>TOTAL AMOUNT: </strong>$<%= total(@expenses)%></h3>
+<h3><strong>TOTAL AMOUNT: </strong>$<%= ('%.2f' % total(@expenses))%></h3>
 
 <br>
 <%= link_to "Add New Expense", new_group_expense_path(@group)%>
