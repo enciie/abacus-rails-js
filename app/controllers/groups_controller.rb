@@ -20,13 +20,10 @@ class GroupsController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def update
     if @group.update(group_params)
       @group.save
-      redirect_to group_path(@group)
+      redirect_to group_expenses_path(@group)
     else
       render 'edit'
     end
