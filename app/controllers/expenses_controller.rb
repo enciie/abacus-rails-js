@@ -1,6 +1,11 @@
 class ExpensesController < ApplicationController
   before_action :authenticate_user
 
+  def index
+    @group = Group.find_by(id: params[:group_id])
+    @expenses = @group.expenses
+  end
+
   def new
     @group = Group.find_by(id: params[:group_id])
     @expense = Expense.new
@@ -11,7 +16,7 @@ class ExpensesController < ApplicationController
     @expense = @group.expenses.new(expense_params)
     @expense.user_id = current_user.id
     if @expense.save
-      redirect_to @group #Group show page
+      redirect_to group_expenses_path(@group) #Group/expense show page
     else
       render 'new'
     end
@@ -32,7 +37,7 @@ class ExpensesController < ApplicationController
     @expense = Expense.find(params[:id])
     if @expense.update(expense_params)
       @expense.save
-      redirect_to @group
+      redirect_to group_expenses_path(@group)
     else
       render 'edit'
     end
@@ -42,7 +47,7 @@ class ExpensesController < ApplicationController
     @group = Group.find_by(id: params[:group_id])
     @expense = Expense.find(params[:id])
     if @expense.delete
-      redirect_to @group
+      redirect_to group_expenses_path(@group)
     end
   end
 

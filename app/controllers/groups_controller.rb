@@ -14,7 +14,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.user_id = session[:user_id]
     if @group.save
-      redirect_to group_path(@group)
+      redirect_to group_expenses_path(@group)
     else
       render 'new'
     end
