@@ -11,6 +11,6 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create, :show, :edit, :update]
   resources :groups, except: [:show]  do
-    resources :expenses
+    resources :expenses, except: [:show]
   end
 end
