@@ -8,6 +8,8 @@
     <li><%= expense.description%>, $<%= expense.amount %>, <%= link_to "Edit", edit_group_expense_path(@group, expense.id) %>, <%= link_to "Delete", group_expense_path(@group, expense.id), method: :delete, data: { confirm: "Are you sure?" } %> </li>
   <%end %>
 <%end %>
+<h3><strong>TOTAL AMOUNT: </strong>$<%= total(@expenses)%></h3>
+
 <br>
 <%= link_to "Add New Expense", new_group_expense_path(@group)%>
 <%= link_to "View All Groups", groups_path%>
