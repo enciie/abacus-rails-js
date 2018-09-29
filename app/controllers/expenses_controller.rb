@@ -1,5 +1,6 @@
 class ExpensesController < ApplicationController
   before_action :authenticate_user
+  helper_method :sort_column, :sort_direction
 
   def index
     if params[:group_id]
@@ -7,7 +8,7 @@ class ExpensesController < ApplicationController
       if @group.nil?
         redirect_to user_path(current_user)
       else
-        @expenses = @group.expenses
+        @expenses = @group.expenses.order("#{sort_column} #{sort_direction}")
       end
     end
   end
@@ -84,6 +85,18 @@ class ExpensesController < ApplicationController
 
   def expense_params
     params.require(:expense).permit(:description, :amount, :group_id, :user_id, :category_name)
+  end
+
+  def sortable_columns
+    ["description", "amount"]
+  end
+
+  def sort_column
+    sortable_columns.include?(params[:column]) ? params[:column] : "description"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
 end
