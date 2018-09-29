@@ -9,6 +9,15 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def last_updated(group)
+    if group.expenses.empty?
+      group.updated_at.strftime("Last updated %A, %b %e, at %l:%M %p")
+    else
+      group.expenses.last.updated_at.strftime("Last updated %A, %b %e, at %l:%M %p")
+    end
+  end
+  helper_method :last_updated
+
   def group_count
     current_user.groups.count
   end
