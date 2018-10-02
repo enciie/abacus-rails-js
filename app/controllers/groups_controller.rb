@@ -17,6 +17,7 @@ class GroupsController < ApplicationController
       flash[:notice] = "Successfully Created A Group"
       redirect_to groups_path
     else
+      flash[:error] = "Group name can't be blank"
       render 'new'
     end
   end
