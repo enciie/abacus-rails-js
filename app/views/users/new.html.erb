@@ -1,3 +1,13 @@
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>    
+
 <h1>Sign Up For A New Account</h1>
 
 <%= form_for @user do |f| %>
