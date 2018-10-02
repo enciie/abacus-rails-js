@@ -10,6 +10,15 @@
   </head>
 
   <body>
+
+    <header>
+    <a href="<%= root_url %> "class="button" />Home</a>
+
+    <% if current_user %>
+      <%= link_to("Groups", groups_path, :class => "button")%>
+      <%= link_to("Log Out", logout_path, :class => "button") %>
+    <% end %>
+  </header>
     <%= yield %>
   </body>
 </html>
