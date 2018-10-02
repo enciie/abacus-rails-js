@@ -25,8 +25,10 @@ class GroupsController < ApplicationController
   def update
     if @group.update(group_params)
       @group.save
+      flash[:notice] = "Successfully Updated Group Name"
       redirect_to group_expenses_path(@group)
     else
+      flash[:error] = "Group name can't be blank"
       render 'edit'
     end
   end
@@ -36,6 +38,7 @@ class GroupsController < ApplicationController
 
   def destroy
     @group.destroy
+    flash[:notice] = "Group has been deleted"
     redirect_to groups_path
   end
 
