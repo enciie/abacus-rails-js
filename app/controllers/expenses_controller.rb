@@ -68,6 +68,7 @@ class ExpensesController < ApplicationController
     @expense.category_name = params[:expense][:category_name]
     if @expense.update(expense_params)
       @expense.save
+      flash[:notice] = "Successfully Updated The Expense"
       redirect_to group_expenses_path(@group)
     else
       render 'edit'
@@ -78,6 +79,7 @@ class ExpensesController < ApplicationController
     @group = Group.find_by(id: params[:group_id])
     @expense = Expense.find(params[:id])
     if @expense.delete
+      flash[:notice] = "Successfully Deleted The Expense"
       redirect_to group_expenses_path(@group)
     end
   end
