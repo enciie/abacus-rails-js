@@ -3,7 +3,7 @@ class Expense < ApplicationRecord
   belongs_to :user
   belongs_to :category
 
-  validates :description, presence: true
+  validates :description, :category_name, presence: true
   validates :amount,
             presence: true,
             numericality: true

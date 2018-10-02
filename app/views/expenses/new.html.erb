@@ -1,3 +1,13 @@
+<% if @expense.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+    <% @expense.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <h1>Create New Expense</h1>
 
 <%= render 'form' %>

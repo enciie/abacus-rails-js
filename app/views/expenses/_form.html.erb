@@ -2,7 +2,7 @@
   <%= f.label :description %><br>
   <%= f.text_field :description %><br>
   <%= f.label :amount %><br>
-  <%= f.number_field :amount, value: number_to_currency(f.object.amount.to_f, delimiter: '', unit: ''), step: :any %><br><br>
+  <%= f.text_field :amount, placeholder: "0.00", value: number_to_currency(f.object.amount.to_f, delimiter: '', unit: ''), step: :any %><br><br>
   <%= f.label "Please Select Or Create A Category" %><br>
   <%= f.text_field :category_name, list: "categories_autocomplete" %>
     <datalist id="categories_autocomplete">

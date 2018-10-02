@@ -27,6 +27,7 @@ class ExpensesController < ApplicationController
     @expense = @group.expenses.new(expense_params)
     @expense.user_id = current_user.id
     if @expense.save
+      flash[:notice] = "Successfully Created An Expense"
       redirect_to group_expenses_path(@group) #Group/expense show page
     else
       render 'new'
