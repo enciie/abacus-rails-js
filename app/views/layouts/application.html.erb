@@ -17,6 +17,9 @@
     <% if current_user %>
       <%= link_to("Groups", groups_path, :class => "button")%>
       <%= link_to("Log Out", logout_path, :class => "button") %>
+    <% else %>
+      <%= link_to("Sign Up", signup_path, :class => "button")%>
+      <%= link_to("Log In", login_path, :class => "button")%>
     <% end %>
   </header>
 
