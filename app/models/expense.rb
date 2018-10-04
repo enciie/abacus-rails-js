@@ -6,7 +6,7 @@ class Expense < ApplicationRecord
   validates :description, :category_name, presence: true
   validates :amount,
             presence: true,
-            numericality: true
+            numericality: { greater_than: 0 }
 
   def category_name=(name)
     self.category = Category.find_or_create_by(name: name)
