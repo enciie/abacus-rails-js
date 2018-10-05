@@ -18,7 +18,7 @@
       <td><strong>Delete</strong></td>
     </tr>
 
-    <% current_user.groups.each do |group| %>
+    <% current_user.groups.recent.each do |group| %>
       <tr>
         <td><%= group.name%></td>
         <td><%= link_to "View Group", group_expenses_path(group)%></td>
