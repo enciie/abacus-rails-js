@@ -91,7 +91,7 @@ class ExpensesController < ApplicationController
   end
 
   def sortable_columns
-    ["description", "amount", "category_name"]
+    ["description", "amount", "created_at", "category_name"]
   end
 
   def sort_column
