@@ -1,6 +1,14 @@
 <%= form_for @group do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %><br><br>
+  <%= f.label :name %>:
+  <%= f.text_field :name %><br>
+
+  <br>
+  <%= f.label :status %>:
+  <%= f.radio_button :status, 0, checked: true %>
+  <%= f.label "Active" %>
+
+  <%= f.radio_button :status, 1 %>
+  <%= f.label "Inactive" %><br><br>
 
   <%= f.submit %><br>
 <% end %>

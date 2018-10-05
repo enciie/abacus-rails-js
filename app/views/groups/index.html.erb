@@ -13,6 +13,7 @@
   <tbody>
     <tr>
       <td><strong>Name</strong></td>
+      <td><strong>Status</strong></td>
       <td><strong>View</strong></td>
       <td><strong>Edit</strong></td>
       <td><strong>Delete</strong></td>
@@ -21,6 +22,7 @@
     <% current_user.groups.recent.each do |group| %>
       <tr>
         <td><%= group.name%></td>
+        <td><%= group.group_status %></td>
         <td><%= link_to "View Group", group_expenses_path(group)%></td>
         <td><%= link_to "Edit Group", edit_group_path(group)%></td>
         <td><%= link_to "Delete Group", group_path(group), method: :delete, data: { confirm: "Are you sure?" } %></td>
