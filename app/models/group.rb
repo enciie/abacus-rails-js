@@ -21,5 +21,7 @@ class Group < ApplicationRecord
   end
 
   scope :recent, -> {order('groups.updated_at DESC')}
+  scope :active_groups, -> {where(:status => 0)}
+  scope :inactive_groups, -> {where(:status => 1)}
 
 end

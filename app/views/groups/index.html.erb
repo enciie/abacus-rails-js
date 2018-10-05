@@ -1,12 +1,12 @@
 <% if group_count == 0 %>
   <p>Please create a group</p>
 <% else %>
-  <h3>Here are your groups:</h3>
+  <h3>Here are your active groups:</h3>
 
 <table class="table">
   <thead>
     <tr>
-      <th colspan = "4"></th>
+      <th colspan = "5"></th>
     </tr>
   </thead>
 
@@ -19,7 +19,7 @@
       <td><strong>Delete</strong></td>
     </tr>
 
-    <% current_user.groups.recent.each do |group| %>
+    <% current_user.groups.active_groups.recent.each do |group| %>
       <tr>
         <td><%= group.name%></td>
         <td><%= group.group_status %></td>
@@ -29,6 +29,37 @@
       </tr>
     <% end %>
   </tbody>
+</table>
+<br><br>
+
+<h3>Inactive groups:</h3>
+
+<table class="table">
+<thead>
+  <tr>
+    <th colspan = "5"></th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr>
+    <td><strong>Name</strong></td>
+    <td><strong>Status</strong></td>
+    <td><strong>View</strong></td>
+    <td><strong>Edit</strong></td>
+    <td><strong>Delete</strong></td>
+  </tr>
+
+  <% current_user.groups.inactive_groups.recent.each do |group| %>
+    <tr>
+      <td><%= group.name%></td>
+      <td><%= group.group_status %></td>
+      <td><%= link_to "View Group", group_expenses_path(group)%></td>
+      <td><%= link_to "Edit Group", edit_group_path(group)%></td>
+      <td><%= link_to "Delete Group", group_path(group), method: :delete, data: { confirm: "Are you sure?" } %></td>
+    </tr>
+  <% end %>
+</tbody>
 </table>
 <% end %><br><br>
 
