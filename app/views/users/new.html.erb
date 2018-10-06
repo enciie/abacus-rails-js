@@ -8,19 +8,20 @@
   </div>
 <% end %>
 
-<h1>Sign Up For A New Account</h1>
+<div class="wrapper">
+  <h1>Sign Up For A New Account</h1><br>
 
+      <%= form_for @user do |f| %>
+        <%= f.label :username %><br>
+        <%= f.text_field :username %><br>
+        <%= f.label :email %><br>
+        <%= f.text_field :email %><br>
+        <%= f.label :password %><br>
+        <%= f.password_field :password %><br>
+        <%= f.label :password_confirmation %><br>
+        <%= f.password_field :password_confirmation %><br><br>
+        <%= f.submit "Create New Account", class: "btn btn-primary"%><br>
+      <% end %><br>
 
-<%= form_for @user do |f| %>
-  <%= f.label :username %><br>
-  <%= f.text_field :username %><br>
-  <%= f.label :email %><br>
-  <%= f.text_field :email %><br>
-  <%= f.label :password %><br>
-  <%= f.password_field :password %><br>
-  <%= f.label :password_confirmation %><br>
-  <%= f.password_field :password_confirmation %><br><br>
-  <%= f.submit "Sign Up"%><br>
-<% end %><br>
-
-<p><%= link_to "Sign Up With GitHub", "auth/github"%></p>
+  <p>Or <%= link_to "Sign Up With GitHub", "auth/github"%></p>
+</div>
