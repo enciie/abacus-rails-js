@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   #omniauth login
   get '/auth/:provider/callback' => 'sessions#create'
 
-  resources :users, only: [:create, :show, :edit, :update]
+  resources :users, only: [:create, :show]
   resources :categories, only: [:show]
 
   resources :groups, except: [:show]  do

@@ -17,7 +17,7 @@ class GroupsController < ApplicationController
       flash[:notice] = "Successfully Created A Group"
       redirect_to groups_path
     else
-      flash[:error] = "Group name can't be blank"
+      raise params.inspect
       render 'new'
     end
   end
@@ -38,14 +38,14 @@ class GroupsController < ApplicationController
 
   def destroy
     @group.destroy
-    flash[:notice] = "Group has been deleted"
+    flash[:notice] = "Successfully Deleted Group"
     redirect_to groups_path
   end
 
   private
 
   def set_group
-    @group = Group.find(params[:id])
+    @group = Group.find_by(id: params[:id])
   end
 
   def group_params
