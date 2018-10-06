@@ -1,24 +1,31 @@
-# README
+# Abacus Expense Tracker Rails App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Flatiron Rails project. This app is to help a user keep track of all their personal expenses.
 
-Things you may want to cover:
+## Features
 
-* Ruby version
 
-* System dependencies
+## Installation
+Fork and clone repo:
+` https://github.com/enciie/abacus-rails-project `
 
-* Configuration
+Install all gem dependencies:
 
-* Database creation
+` bundle install `
 
-* Database initialization
+Create database scheme with migrations:
 
-* How to run the test suite
+` rake db:migrate `
 
-* Services (job queues, cache servers, search engines, etc.)
+Start local server:
 
-* Deployment instructions
+` rails s `
 
-* ...
+Access site at http://localhost:3000
+
+## Contributing
+Bug reports and pull requests are welcome on GitHub at https://github.com/enciie/abacus-rails-project. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+## License
+
+This library is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
