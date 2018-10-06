@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback' => 'sessions#create'
 
   resources :users, only: [:create, :show]
-  resources :categories, only: [:show]
 
   resources :groups, except: [:show]  do
     resources :expenses, except: [:show]
