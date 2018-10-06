@@ -2,9 +2,6 @@
 
 Flatiron Rails project. This app is to help a user keep track of all their personal expenses.
 
-## Features
-
-
 ## Installation
 Fork and clone repo:
 ` https://github.com/enciie/abacus-rails-project `
