@@ -89,12 +89,51 @@ header .logo, header a.button, header a[role="button"] {
     opacity: 1;
   }
 
+/* alerts */
+
   #flash_error {
     font: bold 2.6em;
     color: red;
   }
 
+  #flash_notice {
+    font: bold 2.6em;
+    color: #2db9b9;
+  }
+
   #error_explanation {
     font: bold 2.6em;
     color: red;
+  }
+
+  /* table styling */
+
+table {
+  width: 100%;
+}
+
+th {
+  height: 50px;
+}
+
+  #groups {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  #groups td, #groups th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  #groups tr:nth-child(even){background-color: #f2f2f2;}
+
+  #groups tr:hover {background-color: #ddd;}
+
+  #groups th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #adebeb;
+      color: black;
   }

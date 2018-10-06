@@ -1,5 +1,5 @@
 <% if group_count == 0 %>
-  <p>Please create a group</p>
+  <h2>Please create your first group to track!</h2>
 <% else %>
   <h3>Here are your active groups:</h3>
   <%= render partial: 'table', locals: {groups: @groups.active_groups.recent }%>
