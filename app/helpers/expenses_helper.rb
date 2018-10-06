@@ -1,13 +1,5 @@
 module ExpensesHelper
 
-  def total(expenses)
-    @total = []
-    expenses.each do |expense|
-      @total << expense.amount.to_f
-    end
-    @total.sum
-  end
-
   def sort_link(column, title = nil)
     title ||= column.titleize
     direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"

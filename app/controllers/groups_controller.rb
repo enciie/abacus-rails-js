@@ -17,7 +17,6 @@ class GroupsController < ApplicationController
       flash[:notice] = "Successfully Created A Group"
       redirect_to groups_path
     else
-      raise params.inspect
       render 'new'
     end
   end
@@ -34,6 +33,9 @@ class GroupsController < ApplicationController
   end
 
   def edit
+    if @group.nil?
+      redirect_to groups_path, alert: "Group Not Found"
+    end
   end
 
   def destroy
@@ -45,7 +47,7 @@ class GroupsController < ApplicationController
   private
 
   def set_group
-    @group = Group.find_by(id: params[:id])
+    @group = current_user.groups.find_by(id: params[:id])
   end
 
   def group_params
