@@ -1,5 +1,8 @@
-<h1>ABACUS - Your Personal Expense Tracker</h1><br>
+<div class="wrapper">
+  <h1>ABACUS</h1><br>
 
-<h4>Number of Groups you currently have: <%= link_to group_count, groups_path %></h4><br><br>
+  <h4>Hi, <%= current_user.username.upcase %></h4>
+  <h4>The Number of Groups you are currently tracking is <%= link_to group_count, groups_path %>.</h4><br><br>
 
-<%= link_to "Create A New Group", new_group_path, class: 'button-1' %><br>
+  <%= link_to "Create A New Group", new_group_path, class: 'button-1' %><br>
+</div>

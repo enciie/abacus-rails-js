@@ -1,12 +1,14 @@
-<h1>Log In</h1>
-<%= form_tag login_path do %>
-  <%= label_tag :username%><br>
-  <%= text_field_tag :username %><br>
-  <%= label_tag :password %><br>
-  <%= password_field_tag :password %><br><br>
-  <%= submit_tag "Log In" %>
-<% end %><br>
+<div class="login-form">
+  <h2 class="text-center">Log in</h2>
+  <div class="form-group">
+    <%= form_for(:session, url: login_path) do |f| %>
+      <%= f.text_field :username, class: 'form-control', placeholder: 'Username', required: 'required' %><br>
+      <%= f.password_field :password, class: 'form-control', placeholder: 'Password', required: 'required' %><br><br>
+      <%= f.submit "Log In", class: 'btn btn-primary btn-block' %>
+    <% end %><br>
+  </div>
 
-<p><%= link_to "Login in Via GitHub", "auth/github"%></p>
+<p class="text-center"><%= link_to "Login in Via GitHub", "auth/github"%></p>
 
- <br>New User? Please <%= link_to "Sign Up", signup_path %><br>
+<p class="text-center">New User? Please <%= link_to "Sign Up", signup_path %></p>
+</div>
