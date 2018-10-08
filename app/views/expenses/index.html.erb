@@ -29,8 +29,8 @@
     </tbody>
   </table>
 
-  <h3><strong>TOTAL AMOUNT: </strong>$<%= ('%.2f' % total(@expenses))%></h3>
+  <%= render :partial => 'total' %>
   <%end %><br><br>
   <br>
 
-  <%= link_to "Add New Expense", new_group_expense_path(@group), class: 'button-1'%>  
+  <%= link_to "Add New Expense", new_group_expense_path(@group), class: 'button-1'%>
