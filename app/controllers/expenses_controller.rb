@@ -93,12 +93,4 @@ class ExpensesController < ApplicationController
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
-  def total(expenses)
-    @total = []
-    expenses.each do |expense|
-      @total << expense.amount.to_f
-    end
-    @total.sum
-  end
-
 end

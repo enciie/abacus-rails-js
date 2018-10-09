@@ -20,6 +20,22 @@ class Group < ApplicationRecord
     self.active? ? "Active" : "Inactive"
   end
 
+  def total_expenses
+    self.expenses.sum(:amount)
+  end
+
+  def min_expense
+    self.expenses.minimum(:amount)
+  end
+
+  def max_expense
+    self.expenses.maximum(:amount)
+  end
+
+  def avg_expense
+    self.expenses.average(:amount)
+  end
+
   scope :recent, -> {order('groups.updated_at DESC')}
   scope :active_groups, -> {where(:status => 0)}
   scope :inactive_groups, -> {where(:status => 1)}
