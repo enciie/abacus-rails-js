@@ -25,7 +25,6 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      @group.save
       flash[:notice] = "Successfully Updated Group"
       redirect_to group_expenses_path(@group)
     else
