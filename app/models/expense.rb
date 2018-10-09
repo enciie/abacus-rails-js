@@ -8,6 +8,7 @@ class Expense < ApplicationRecord
             presence: true,
             numericality: { greater_than: 0 }
 
+#custom setter & getter
   def category_name=(name)
     self.category = Category.find_or_create_by(name: name)
   end
