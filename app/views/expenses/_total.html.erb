@@ -1,1 +1,1 @@
-<h3><strong>TOTAL AMOUNT: </strong>$<%= ('%.2f' % total(@expenses))%></h3>
+<h3><strong>TOTAL AMOUNT: </strong><%= number_to_currency(total(@expenses))%></h3>

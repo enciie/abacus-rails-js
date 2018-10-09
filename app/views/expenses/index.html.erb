@@ -19,7 +19,7 @@
       <%@expenses.each do |expense|%>
         <tr>
           <td><%= expense.description%></td>
-          <td>$<%= ('%.2f' % expense.amount) %></td>
+          <td><%= number_to_currency(expense.amount) %></td>
           <td><%= expense.created_at.strftime "%B %e, %Y" %></td>
           <td><%= expense.category_name %></td>
           <td><%= link_to "Edit", edit_group_expense_path(expense.group_id, expense.id) %></td>
