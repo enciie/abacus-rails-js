@@ -10,5 +10,5 @@
   <%= f.radio_button :status, 1 %>
   <%= f.label "Inactive" %><br><br>
 
-  <%= f.submit %><br>
+  <%= f.submit %> <%= link_to "Cancel", groups_path, class: 'button' %><br>
 <% end %>
