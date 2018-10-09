@@ -35,7 +35,8 @@ class GroupsController < ApplicationController
 
   def edit
     if @group.nil?
-      redirect_to groups_path, alert: "Group Not Found"
+      redirect_to groups_path
+      flash[:error] = "Group Not Found"
     end
   end
 

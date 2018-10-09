@@ -24,6 +24,7 @@ class SessionsController < ApplicationController
         redirect_to user_path(@user)
       else
         # Sends user back to the login/signup root page
+        flash[:error] = "Please enter correct username and password, or sign up"
         redirect_to root_path
       end
     end

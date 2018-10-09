@@ -8,7 +8,7 @@ class ExpensesController < ApplicationController
     # @group = current_user.groups.find_by(id: params[:group_id])
     if @group.nil?
       redirect_to groups_path
-      flash[:error] = "You do not have permission to view the Group"
+      flash[:error] = "You do not have permission to view this Group"
     else
       @expenses = @group.expenses.order("#{sort_column} #{sort_direction}")
     end
@@ -38,11 +38,14 @@ class ExpensesController < ApplicationController
   def edit
     # @group = current_user.groups.find_by(id: params[:group_id])
     if @group.nil?
-      redirect_to group_expenses_path, alert: "Group Not Found"
+      redirect_to group_expenses_path
     else
       @expense = @group.expenses.find_by(id: params[:id])
-      redirect_to group_expenses_path, alert: "Expense Not Found" if @expense.nil?
       @categories = Category.all.map{|c| [ c.name, c.id ] }
+        if @expense.nil?
+          redirect_to group_expenses_path
+          flash[:error] = "Expense Not Found For This Group"
+        end
     end
   end
 
