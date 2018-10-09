@@ -27,6 +27,7 @@ class ExpensesController < ApplicationController
     # @group = current_user.groups.find_by(id: params[:group_id])
     @expense = @group.expenses.new(expense_params)
     @expense.user_id = current_user.id
+    @expense.category_name = @expense.category_name.titleize
     if @expense.valid?
       @expense.save
       flash[:notice] = "Successfully Created An Expense"
@@ -85,7 +86,7 @@ class ExpensesController < ApplicationController
   end
 
   def sortable_columns
-    ["description", "amount", "created_at", "category_name"]
+    ["description", "amount", "created_at", "category_id"]
   end
 
   def sort_column
