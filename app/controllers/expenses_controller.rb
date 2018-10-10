@@ -2,7 +2,7 @@ class ExpensesController < ApplicationController
   before_action :authenticate_user
   before_action :set_group, except: [:show]
   before_action :set_expenses, only: [:update, :destroy]
-  helper_method :sort_column, :sort_direction, :total
+  helper_method :sort_column, :sort_direction
 
   def index
     # @group = current_user.groups.find_by(id: params[:group_id])
@@ -24,8 +24,8 @@ class ExpensesController < ApplicationController
   end
 
   def create
-    # @group = current_user.groups.find_by(id: params[:group_id])
-    @expense = @group.expenses.new(expense_params)
+    # @group = current_user.groups.find_by(id: params[:group_id]) finding the parent
+    @expense = @group.expenses.build(expense_params)
     @expense.user_id = current_user.id
     @expense.category_name = @expense.category_name.titleize
     if @expense.valid?

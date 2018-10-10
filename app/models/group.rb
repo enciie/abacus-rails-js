@@ -1,7 +1,14 @@
 class Group < ApplicationRecord
   belongs_to :user
   has_many :expenses, :dependent => :delete_all
+  has_many :categories, :through => :expenses
+
+  # Active Record Validation
   validates :name, presence: true
+
+  scope :recent, -> {order('groups.updated_at DESC')}
+  scope :active_groups, -> {where(:status => 0)}
+  scope :inactive_groups, -> {where(:status => 1)}
 
   STATUS = {
     :active => 0,
@@ -35,9 +42,5 @@ class Group < ApplicationRecord
   def avg_expense
     self.expenses.average(:amount)
   end
-
-  scope :recent, -> {order('groups.updated_at DESC')}
-  scope :active_groups, -> {where(:status => 0)}
-  scope :inactive_groups, -> {where(:status => 1)}
 
 end

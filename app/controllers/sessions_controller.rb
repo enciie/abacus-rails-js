@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
         u.password = SecureRandom.hex
       end
 
-      session[:user_id] = @user.id
+      session[:user_id] = @user.id #set a cookie on the user's browser by writing user.id into the session hash
       redirect_to user_path(@user)
 
     else

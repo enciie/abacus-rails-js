@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user #Rails runs a check before any controller action
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -52,8 +52,10 @@ class GroupsController < ApplicationController
     @group = current_user.groups.find_by(id: params[:id])
   end
 
+#strong params
   def group_params
     params.require(:group).permit(:name, :user_id, :status)
   end
+  #params that get passed mist conatin a key called group
 
 end
