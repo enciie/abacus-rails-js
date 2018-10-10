@@ -12,9 +12,12 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
-    @group.user_id = session[:user_id]
     if @group.valid?
       @group.save
+      @membership = current_user.memberships.build(:group_id => @group.id)
+      if @membership.valid?
+        @membership.save
+      end
       flash[:notice] = "Successfully Created A Group"
       redirect_to groups_path
     else
@@ -54,7 +57,7 @@ class GroupsController < ApplicationController
 
 #strong params
   def group_params
-    params.require(:group).permit(:name, :user_id, :status)
+    params.require(:group).permit(:name, :status)
   end
   #params that get passed mist conatin a key called group
 

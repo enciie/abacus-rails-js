@@ -1,5 +1,7 @@
 class Group < ApplicationRecord
-  belongs_to :user
+  has_many :memberships, :dependent => :delete_all
+  has_many :users, :through => :memberships
+
   has_many :expenses, :dependent => :delete_all
   has_many :categories, :through => :expenses
 

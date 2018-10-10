@@ -1,12 +1,9 @@
-<% if group_count == 0 %>
-  <h2>Please create your first group to track!</h2>
-<% else %>
-  <h3>Here are your active groups:</h3>
+<h3>Here are your active groups:</h3>
   <%= render partial: 'table', locals: {groups: @groups.active_groups.recent }%>
   <br><br>
 
   <h3>Inactive groups:</h3>
   <%= render partial: 'table', locals: {groups: @groups.inactive_groups.recent }%>
-<% end %><br><br>
+<br><br>
 
 <%= link_to "Create A New Group", new_group_path, class: 'button-1' %><br>
