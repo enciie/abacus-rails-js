@@ -16,6 +16,10 @@ class GroupsController < ApplicationController
 
   def show
     # @group = Group.find_by(id: params[:id])
+    if @group.nil?
+      redirect_to groups_path
+      flash[:error] = "Group Not Found"
+    end
   end
 
   def create
@@ -46,9 +50,14 @@ class GroupsController < ApplicationController
   end
 
   def edit
+    # @group = Group.find_by(id: params[:id])
     if @group.nil?
       redirect_to groups_path
       flash[:error] = "Group Not Found"
+    else
+      !@group.users.ids.include?(current_user.id)
+      redirect_to groups_path
+      flash[:error] = "You do not have permission to edit this group"
     end
   end
 

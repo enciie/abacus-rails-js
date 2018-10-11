@@ -9,6 +9,10 @@ class ExpensesController < ApplicationController
     if @group.nil?
       redirect_to groups_path
       flash[:error] = "Group does not exist"
+    elsif
+      !@group.users.ids.include?(current_user.id)
+      redirect_to groups_path
+      flash[:error] = "You do not have permission to view this group"
     else
       @expenses = @group.expenses.order("#{sort_column} #{sort_direction}")
     end
