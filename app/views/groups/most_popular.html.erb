@@ -1,9 +1,4 @@
-<h3>See all groups: <%= link_to "", groups_path, class: 'glyphicon glyphicon-refresh'%></h3>
-
-<%= form_tag(groups_path, method: :get) do %>
-  Group Name: <%= text_field_tag :name %>
-  <%= submit_tag 'Search', name: nil %>
-<% end %>
+<h3>Groups by Most Popular:</h3>
 
 <table id="groups">
   <thead>
@@ -22,7 +17,7 @@
       <tr>
         <td><%= group.name%></td>
         <td><%= group.users.first.username%></td>
-        <td><%= group.user_count %></td>
+        <td><%= group.users.size %></td>
         <td><%= group.group_status %></td>
         <td><%= link_to "", group_path(group), class: 'glyphicon glyphicon-eye-open'%></td>
       </tr>

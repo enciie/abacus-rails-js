@@ -48,7 +48,7 @@ class Group < ApplicationRecord
   end
 
   def user_count
-    self.users.count
+    self.users.size
   end
 
   def split

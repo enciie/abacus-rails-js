@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create, :show]
 
+  get '/groups/most_popular' => 'groups#most_popular'
+
   resources :groups, except: [:show]  do
     resources :expenses, except: [:show]
   end

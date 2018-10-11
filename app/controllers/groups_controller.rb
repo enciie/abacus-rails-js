@@ -10,6 +10,11 @@ class GroupsController < ApplicationController
     end
   end
 
+  def most_popular
+    raise params.inspect
+    @groups = Group.all
+  end
+
   def new
     @group = Group.new
   end
