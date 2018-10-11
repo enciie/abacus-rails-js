@@ -3,7 +3,11 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   def index
-    @groups = Group.all
+    if params[:name]
+      @groups = Group.where('name LIKE ?', "%#{params[:name]}%")
+    else
+      @groups = Group.all
+    end
   end
 
   def new

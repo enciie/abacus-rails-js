@@ -1,4 +1,9 @@
-<h3>See all groups:</h3>
+<h3>See all groups: <%= link_to "", groups_path, class: 'glyphicon glyphicon-refresh'%></h3>
+
+<%= form_tag(groups_path, method: :get) do %>
+  Group Name: <%= text_field_tag :name %>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
 
 <table id="groups">
   <thead>
