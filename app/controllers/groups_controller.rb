@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   def index
-    @groups = Group.all
+    @groups = Group.order("#{sort_column} #{sort_direction}")
   end
 
   def new
@@ -17,6 +17,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     if @group.valid?
+      @group.name = @group.name.titleize
       @group.save
       @membership = current_user.memberships.build(:group_id => @group.id)
       if @membership.valid?

@@ -27,6 +27,7 @@ class ExpensesController < ApplicationController
     # @group = current_user.groups.find_by(id: params[:group_id]) finding the parent
     @expense = @group.expenses.build(expense_params)
     @expense.user_id = current_user.id
+    @expense.description = @expense.description.titleize
     @expense.category_name = @expense.category_name.titleize
     if @expense.valid?
       @expense.save
