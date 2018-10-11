@@ -49,13 +49,18 @@ class Group < ApplicationRecord
   end
 
   def user_count
+<<<<<<< HEAD
     self.users.size
+=======
+    self.users.count
+>>>>>>> f93afb354290b8eaba4a87d4e875b2b570a45523
   end
 
   def split
     self.total_expenses / self.user_count
   end
 
+<<<<<<< HEAD
   def self.search(term)
     if term
       where('name LIKE ?', "%#{term}%").order('id DESC')
@@ -70,4 +75,6 @@ class Group < ApplicationRecord
       self.name = self.name.titleize
     end
 
+=======
+>>>>>>> f93afb354290b8eaba4a87d4e875b2b570a45523
 end
