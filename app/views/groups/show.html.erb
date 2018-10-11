@@ -1,5 +1,7 @@
 <h1>Group Summary <%= @group.name %></h1><br>
 
+<% if @group.users.include?(current_user) %>
+
 <%= render :partial => 'expenses/total', :locals => { :total => @group.total_expenses } %><br>
 
 <%= render :partial => 'expenses/summary',
@@ -18,9 +20,11 @@
 <% end %>
 </ul><br>
 
-<%= form_tag(memberships_path) do %>
+<% else %>
+<h3> To View Summary you need to be a member of this group</h3>
+  <%= form_tag(memberships_path) do %>
     <%= hidden_field_tag 'id', @group.id %>
     <%= submit_tag "Join Group", class: 'button-1' %>
+  <% end %>
 <% end %>
-
 <br><br>
