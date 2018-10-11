@@ -25,7 +25,6 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     if @group.valid?
-      @group.name = @group.name.titleize
       @group.save
       @membership = current_user.memberships.build(:group_id => @group.id)
       if @membership.valid?

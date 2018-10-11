@@ -9,6 +9,8 @@ class Expense < ApplicationRecord
             presence: true,
             numericality: { greater_than: 0 }
 
+  before_validation :titleize_description
+
 #custom setter & getter
 #setter method is called whenever an Expense is initialized with a category_name field
   def category_name=(name)
@@ -18,5 +20,11 @@ class Expense < ApplicationRecord
   def category_name
     self.category ? self.category.name : nil
   end
+
+  private
+
+    def titleize_description
+      self.description = self.description.titleize
+    end
 
 end

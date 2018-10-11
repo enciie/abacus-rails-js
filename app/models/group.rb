@@ -8,6 +8,8 @@ class Group < ApplicationRecord
   # Active Record Validation
   validates :name, presence: true
 
+  before_validation :titleize_name
+
   scope :recent, -> {order('groups.updated_at DESC')}
   scope :active_groups, -> {where(:status => 0)}
   scope :inactive_groups, -> {where(:status => 1)}
@@ -52,5 +54,11 @@ class Group < ApplicationRecord
   def split
     self.total_expenses / self.user_count
   end
+
+  private
+
+    def titleize_name
+      self.name = self.name.titleize
+    end
 
 end
