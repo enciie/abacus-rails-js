@@ -46,6 +46,10 @@ class ExpensesController < ApplicationController
     # @group = current_user.groups.find_by(id: params[:group_id])
     if @group.nil?
       redirect_to group_expenses_path
+    elsif
+      !@group.users.ids.include?(current_user.id)
+      redirect_to groups_path
+      flash[:error] = "You do not have permission to edit this expense"
     else
       @expense = @group.expenses.find_by(id: params[:id])
       @categories = Category.all.map{|c| [ c.name, c.id ] }

@@ -54,7 +54,7 @@ class GroupsController < ApplicationController
     if @group.nil?
       redirect_to groups_path
       flash[:error] = "Group Not Found"
-    else
+    elsif
       !@group.users.ids.include?(current_user.id)
       redirect_to groups_path
       flash[:error] = "You do not have permission to edit this group"
