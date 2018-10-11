@@ -4,8 +4,10 @@
     <%= render partial: 'groups/table', locals: {groups: @groups.active_groups.recent}%>
   <br>
 
+<% if !current_user.groups.inactive_groups.empty? %>
   <h3>Inactive groups:</h3>
     <%= render partial: 'groups/table', locals: {groups: @groups.inactive_groups.recent }%>
+  <% end %>
   <br><br>
 
   <%= link_to "Create A New Group", new_group_path, class: 'button-1' %><br>
