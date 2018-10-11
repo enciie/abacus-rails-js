@@ -15,9 +15,14 @@
       <tr>
         <td><%= group.name%></td>
         <td><%= group.group_status %></td>
-        <td><%= link_to "View Group", group_expenses_path(group)%></td>
-        <td><%= link_to "Edit Group", edit_group_path(group)%></td>
-        <td><%= link_to "Delete Group", group_path(group), method: :delete, data: { confirm: "Are you sure?" } %></td>
+        <td><%= link_to "", group_expenses_path(group), class: 'glyphicon glyphicon-eye-open'%></td>
+        <% if group.users.first == current_user %>
+          <td><%= link_to "", edit_group_path(group), class: 'glyphicon glyphicon-pencil' %></td>
+          <td><%= link_to "", group_path(group), method: :delete, data: { confirm: "Are you sure?" }, class: 'glyphicon glyphicon-trash' %></td>
+        <% else %>
+          <td><span class="glyphicon glyphicon-ban-circle"></span></td>
+          <td><span class="glyphicon glyphicon-ban-circle"></span></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

@@ -1,5 +1,8 @@
-<h1 class = "wrapper"><%= @group.name %></h1><br>
-
+<% if @group.users.first == current_user%>
+  <h1 class = "wrapper"><%= @group.name %> <%= link_to '', edit_group_path(@group), class: 'glyphicon glyphicon-pencil' %></h1><br>
+<% else %>
+  <h1 class = "wrapper"><%= @group.name %></h1><br>
+<%end%>
   <% if @expenses.empty? %>
   <div class="wrapper">
     <h4>There are no expenses for this group</h4><br>

@@ -19,7 +19,7 @@
         <td><%= group.users.first.username%></td>
         <td><%= group.users.count %></td>
         <td><%= group.group_status %></td>
-        <td><%= link_to "View", group_path(group)%></td>
+        <td><%= link_to "", group_path(group), class: 'glyphicon glyphicon-eye-open'%></td>
       </tr>
     <% end %>
   </tbody>
