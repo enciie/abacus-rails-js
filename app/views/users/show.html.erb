@@ -1,7 +1,9 @@
 <h4>HI, <%= current_user.username.upcase %></h4><br>
 
 <% if current_user.groups.empty? %>
+<div class="wrapper">
   <h4>You don't have any groups</h4>
+</div>
 <% else %>
   <h3>Here Are Your Most Recent Groups:</h3>
     <%= render partial: 'groups/table', locals: {groups: @groups.active_groups.recent}%>
@@ -13,4 +15,6 @@
   <% end %>
   <br><br>
 <% end %>
+<div class="wrapper">
   <%= link_to "Create A New Group", new_group_path, class: 'button-1' %><br>
+</div>
