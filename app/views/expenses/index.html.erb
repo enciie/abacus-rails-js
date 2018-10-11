@@ -7,7 +7,7 @@
 
     <% if @group.users.include?(current_user) %>
       <%= render :partial => 'table' %>
-      <%= render :partial => 'total', :locals => { :total => @group.total_expenses } %>
+      <h3><strong>TOTAL AMOUNT: </strong><%= number_to_currency(@group.total_expenses)%></h3>
 
       <%= link_to "Add New Expense", new_group_expense_path(@group), class: 'button-1'%>
 
