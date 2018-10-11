@@ -1,8 +1,16 @@
-<div id="summary">
-  <p><strong>Min expense:</strong></p>
-  <p><%= number_to_currency(min) %></p>
-  <p><strong>Max expense:</strong>
-  <p><%= number_to_currency(max) %></p>
-  <p><strong>Avg expense:</strong>
-  <p><%= number_to_currency(average) %></p>
-</div>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Minimum Expense</th>
+      <th>Maximum Expense</th>
+      <th>Average Expense</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><%= number_to_currency(min) %></td>
+        <td><%= number_to_currency(max) %></td>
+        <td><%= number_to_currency(average) %></td>
+      </tr>
+  </tbody>
+</table>
