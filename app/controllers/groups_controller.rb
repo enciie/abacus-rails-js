@@ -11,7 +11,6 @@ class GroupsController < ApplicationController
   end
 
   def most_popular
-    raise params.inspect
     @groups = Group.all
   end
 

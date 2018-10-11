@@ -11,6 +11,7 @@ class Group < ApplicationRecord
   before_validation :titleize_name
 
   scope :recent, -> {order('groups.updated_at DESC')}
+  scope :most_popular, -> {order('memberships_count DESC')}
   scope :active_groups, -> {where(:status => 0)}
   scope :inactive_groups, -> {where(:status => 1)}
 

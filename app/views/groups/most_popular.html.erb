@@ -13,7 +13,7 @@
 
   <tbody>
 
-    <% @groups.recent.each do |group| %>
+    <% @groups.most_popular.each do |group| %>
       <tr>
         <td><%= group.name%></td>
         <td><%= group.users.first.username%></td>
