@@ -17,7 +17,7 @@
   <%= f.label "Please Select Or Create A Category" %><br>
   <%= f.text_field :category_name, list: "categories_autocomplete" %>
     <datalist id="categories_autocomplete">
-      <% current_user.categories.all.uniq.each do |category| %>
+      <% Category.all.uniq.each do |category| %>
         <option value="<%= category.name %>">
       <% end %>
     </datalist><br><br>
