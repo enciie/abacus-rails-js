@@ -142,6 +142,28 @@ th {
       color: black;
   }
 
+  #groups-user {
+    border-collapse: collapse;
+    width: 250px;
+  }
+
+  #groups-user td, #groups-user th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  #groups-user tr:nth-child(even){background-color: #f2f2f2;}
+
+  #groups-user tr:hover {background-color: #ddd;}
+
+  #groups-user th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #adebeb;
+      color: black;
+  }
+
   .button-1 {
     background-color: #2db9b9;
     border: none;
