@@ -16,14 +16,16 @@
     </tr>
   </thead>
   <tbody>
+    <% @group.users.each do |user|%>
       <tr>
-        <% @group.users.each do |user|%>
-          <td><%= user.username %></td>
-        <% end %>
+        <td><%= user.username %></td>
       </tr>
+    <% end %>
   </tbody>
 </table>
 <br>
+
+<%= pie_chart Group.group(:expense).count %>
 
   <%= link_to "View Group Expenses", group_expenses_path(@group), class: 'button-1'%>
 
