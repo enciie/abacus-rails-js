@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    @groups = @user.groups
     if @user != current_user
       redirect_to root_path
     end

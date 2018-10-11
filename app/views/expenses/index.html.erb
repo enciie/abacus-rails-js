@@ -28,11 +28,8 @@
       <%end %>
     </tbody>
   </table>
-  <%= render :partial => 'summary',
-           :locals => { :min => @group.min_expense,
-                        :max => @group.max_expense,
-                        :average => @group.avg_expense } %>
   <%= render :partial => 'total', :locals => { :total => @group.total_expenses } %>
   <%end %><br><br>
 
   <%= link_to "Add New Expense", new_group_expense_path(@group), class: 'button-1'%>
+  <%= link_to "Group Summary", group_path(@group), class: 'button-1'%>

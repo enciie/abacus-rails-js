@@ -3,11 +3,15 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   def index
-    @groups = current_user.groups
+    @groups = Group.all
+    @membership = Membership.new
   end
 
   def new
     @group = Group.new
+  end
+
+  def show
   end
 
   def create
@@ -19,7 +23,7 @@ class GroupsController < ApplicationController
         @membership.save
       end
       flash[:notice] = "Successfully Created A Group"
-      redirect_to groups_path
+      redirect_to current_user
     else
       flash[:error] = "Group Name Can't Be Blank"
       render 'new'
@@ -46,13 +50,13 @@ class GroupsController < ApplicationController
   def destroy
     @group.destroy
     flash[:notice] = "Successfully Deleted Group"
-    redirect_to groups_path
+    redirect_to current_user
   end
 
   private
 
   def set_group
-    @group = current_user.groups.find_by(id: params[:id])
+    @group = Group.find_by(id: params[:id])
   end
 
 #strong params

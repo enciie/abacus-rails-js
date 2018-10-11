@@ -1,0 +1,23 @@
+<h1>Group Summary <%= @group.name %></h1><br>
+
+<%= render :partial => 'expenses/total', :locals => { :total => @group.total_expenses } %><br>
+
+<%= render :partial => 'expenses/summary',
+         :locals => { :min => @group.min_expense,
+                      :max => @group.max_expense,
+                      :average => @group.avg_expense
+                    } %>
+
+<br><br>
+
+Group Members:
+<% @group.users.each do |user|%>
+  <%= user.username %>
+<% end %>
+
+<%= form_tag(memberships_path) do %>
+    <%= hidden_field_tag 'id', @group.id %>
+    <%= submit_tag "Join Group"%>
+<% end %>
+
+<br><br>

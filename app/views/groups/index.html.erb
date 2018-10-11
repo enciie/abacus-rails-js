@@ -1,9 +1,28 @@
-<h3>Here are your active groups:</h3>
-  <%= render partial: 'table', locals: {groups: @groups.active_groups.recent }%>
-  <br><br>
+<h3>See all groups:</h3>
 
-  <h3>Inactive groups:</h3>
-  <%= render partial: 'table', locals: {groups: @groups.inactive_groups.recent }%>
-<br><br>
+<table id="groups">
+  <thead>
+    <tr>
+      <th><strong>Name</strong></th>
+      <th><strong>Created By</strong></th>
+      <th><strong>Members</strong></th>
+      <th><strong>Status</strong></th>
+      <th><strong>View</strong></th>
+    </tr>
+  </thead>
 
-<%= link_to "Create A New Group", new_group_path, class: 'button-1' %><br>
+  <tbody>
+
+    <% @groups.recent.each do |group| %>
+      <tr>
+        <td><%= group.name%></td>
+        <td><%= group.users.first.username%></td>
+        <% group.users.each do |users|%>
+        <td><%= users.username %></td>
+        <% end %>
+        <td><%= group.group_status %></td>
+        <td><%= link_to "View", group_expenses_path(group)%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

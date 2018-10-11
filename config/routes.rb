@@ -14,13 +14,12 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create, :show]
 
-  resources :groups, only: [:new]
-
-  resources :groups, only: [:show]
-    resources :memberships, only: [:new] #-> domain.com/2/memberships/new
-
   resources :groups, except: [:show]  do
     resources :expenses, except: [:show]
   end
+
+  resources :groups, only: [:show]
+
+  resources :memberships, only: [:new, :create] #-> domain.com/2/memberships/new
 
 end
