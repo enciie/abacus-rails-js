@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   def index
-    @groups = Group.order("#{sort_column} #{sort_direction}")
+    @groups = Group.all
   end
 
   def new
