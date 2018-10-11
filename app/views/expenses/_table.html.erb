@@ -1,0 +1,25 @@
+<%= last_updated @group %><br>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th><%= sort_link "description" %></th>
+      <th><%= sort_link "amount" %></th>
+      <th><%= sort_link "created_at", "Added On" %></th>
+      <th><%= sort_link "category_id", "Category" %></th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@expenses.each do |expense|%>
+      <tr>
+        <td><%= expense.description%></td>
+        <td><%= number_to_currency(expense.amount) %></td>
+        <td><%= expense.created_at.strftime "%B %e, %Y" %></td>
+        <td><%= expense.category_name %></td>
+        <td><%= link_to "Edit", edit_group_expense_path(expense.group_id, expense.id) %></td>
+        <td><%= link_to "Delete", group_expense_path(expense.group_id, expense.id), method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <%end %>
+  </tbody>
+</table>

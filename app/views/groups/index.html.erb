@@ -10,7 +10,7 @@
       <th><strong>View</strong></th>
     </tr>
   </thead>
-ß
+
   <tbody>
 
     <% @groups.recent.each do |group| %>
@@ -19,7 +19,7 @@
         <td><%= group.users.first.username%></td>
         <td><%= group.users.count %></td>
         <td><%= group.group_status %></td>
-        <td><%= link_to "View", group_expenses_path(group)%></td>
+        <td><%= link_to "View", group_path(group)%></td>
       </tr>
     <% end %>
   </tbody>
