@@ -17,12 +17,13 @@ class SessionsController < ApplicationController
 
     else
       #normal login with username/password
-      @user = User.find_by(:username => params[:username])
+      @user = User.find_by(:username => params[:session][:username])
       #If user exists AND password is correct
-      if @user && @user.authenticate(params[:password])
+      if @user && @user.authenticate(params[:session][:password])
         session[:user_id] = @user.id
         redirect_to user_path(@user)
       else
+        raise params.inspect
         # Sends user back to the login/signup root page
         flash[:error] = "Please enter correct username and password, or sign up"
         redirect_to root_path
