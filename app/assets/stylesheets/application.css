@@ -81,6 +81,10 @@ header .logo, header a.button, header a[role="button"] {
     font-size: 20px
 }
 
+.form-group {
+  display: inline-block;
+}
+
 /* Button style from MiniCSS PWA flavors: https://minicss.org/flavors */
   button {
     overflow: visible;

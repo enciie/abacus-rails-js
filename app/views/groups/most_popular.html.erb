@@ -1,4 +1,16 @@
-<h3>Groups by Most Popular:</h3>
+<h3>View Groups By Most Popular: <%= link_to "", groups_most_popular_path, class: 'glyphicon glyphicon-refresh'%></h3>
+
+Search By Group Name:
+<div class="form-group">
+  <%= form_tag(groups_most_popular_path, method: :get) do %>
+    <%= text_field_tag :term, params[:term]%>
+    <%= submit_tag 'Search', name: nil %>
+  <% end %>
+</div>
+
+<div class="form-group">
+  <%= link_to "View By Most Recent", groups_path %>
+</div>
 
 <table id="groups">
   <thead>

@@ -7,7 +7,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.email.downcase!
     if @user.save
       flash[:notice] = "Successfully Created An Account"
       session[:user_id] = @user.id
@@ -19,8 +18,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    @groups = @user.groups
-    if @user != current_user
+    if @user && @user == current_user
+      @groups = @user.groups
+    else
       redirect_to root_path
     end
   end

@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 2018_10_11_213957) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
-    t.integer "member_count"
     t.integer "memberships_count"
   end
 

@@ -3,15 +3,11 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:name]
-      @groups = Group.where('name LIKE ?', "%#{params[:name]}%")
-    else
-      @groups = Group.all
-    end
+    @groups = Group.search(params[:term])
   end
 
   def most_popular
-    @groups = Group.all
+    @groups = Group.search(params[:term])
   end
 
   def new
@@ -78,7 +74,7 @@ class GroupsController < ApplicationController
 
 #strong params
   def group_params
-    params.require(:group).permit(:name, :status)
+    params.require(:group).permit(:name, :status, :term)
   end
   #params that get passed mist conatin a key called group
 

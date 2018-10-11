@@ -56,6 +56,14 @@ class Group < ApplicationRecord
     self.total_expenses / self.user_count
   end
 
+  def self.search(term)
+    if term
+      where('name LIKE ?', "%#{term}%").order('id DESC')
+    else
+      order('id DESC')
+    end
+  end
+
   private
 
     def titleize_name
