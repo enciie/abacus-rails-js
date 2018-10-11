@@ -1,16 +1,56 @@
-<table id="groups">
-  <thead>
-    <tr>
-      <th>Minimum Expense</th>
-      <th>Maximum Expense</th>
-      <th>Average Expense</th>
-    </tr>
-  </thead>
-  <tbody>
+  <table id="groups-summary" class= "center">
+    <thead>
       <tr>
-        <td><%= number_to_currency(min) %></td>
-        <td><%= number_to_currency(max) %></td>
-        <td><%= number_to_currency(average) %></td>
+        <th colspan="2">By Catgeory</th>
       </tr>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% group.expenses.group(:category).sum(:amount).each do |category, sum| %>
+        <tr>
+          <td width="60%"><%= category.name %></td>
+          <td width="40%"><%= number_to_currency(sum) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+
+  <table id="groups-summary" class= "center">
+    <thead>
+      <tr>
+        <th colspan="2">By Expense</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td width="60%">Minimum Expense</td>
+          <td width="40%"><%= number_to_currency(group.min_expense) %></td>
+        </tr>
+        <tr>
+          <td width="60%">Maximum Expense</td>
+          <td width="40%"><%= number_to_currency(group.max_expense) %></td>
+        </tr>
+        <tr>
+          <td width="60%">Average Expense</td>
+          <td width="40%"><%= number_to_currency(group.avg_expense) %></td>
+        </tr>
+    </tbody>
+  </table>
+  <br>
+
+  <table id="groups-summary" class= "center">
+    <thead>
+      <tr>
+        <th colspan="2">Split By Member</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @group.users.each do |user|%>
+        <tr>
+          <td width="60%"><%= user.username %></td>
+          <td width="40%"><%= number_to_currency(@group.split)%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>

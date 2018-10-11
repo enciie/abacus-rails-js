@@ -128,6 +128,7 @@ th {
   #groups td, #groups th {
     border: 1px solid #ddd;
     padding: 8px;
+    width: 20%
   }
 
   #groups tr:nth-child(even){background-color: #f2f2f2;}
@@ -142,27 +143,34 @@ th {
       color: black;
   }
 
-  #groups-user {
+  #groups-summary {
     border-collapse: collapse;
-    width: 250px;
+    width: 50%;
   }
 
-  #groups-user td, #groups-user th {
+  #groups-summary td, #groups-summary th {
     border: 1px solid #ddd;
     padding: 8px;
   }
 
-  #groups-user tr:nth-child(even){background-color: #f2f2f2;}
+  #groups-summary tr:nth-child(even){background-color: #f2f2f2;}
 
-  #groups-user tr:hover {background-color: #ddd;}
+  #groups-summary tr:hover {background-color: #ddd;}
 
-  #groups-user th {
+  #groups-summary th {
       padding-top: 12px;
       padding-bottom: 12px;
       text-align: left;
       background-color: #adebeb;
       color: black;
   }
+
+  table.center {
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  /* buttons */
 
   .button-1 {
     background-color: #2db9b9;

@@ -1,40 +1,24 @@
-<h1>Group Summary <%= @group.name %></h1><br>
-
+<div class = "wrapper">
+  <h1>Group Summary <%= @group.name %></h1><br>
+</div>
 <% if @group.users.include?(current_user) %>
 
-  <%= render :partial => 'expenses/summary',
-             :locals => { :min => @group.min_expense, :max => @group.max_expense, :average => @group.avg_expense} %>
+  <%= render :partial => 'expenses/summary', :locals => {:group => @group} %>
 
-  <h3><strong>Split per member: </strong><%= number_to_currency(@group.split)%></h3>
-  <h3><strong>Total Amount: </strong><%= number_to_currency(@group.total_expenses)%></h3>
-<br>
+<div class = "wrapper">
+    <h3><strong>Total Amount: </strong><%= number_to_currency(@group.total_expenses)%></h3>
+  <br>
 
-<table id="groups-user">
-  <thead>
-    <tr>
-      <th>Group Members (<%= @group.user_count %>):</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @group.users.each do |user|%>
-      <tr>
-        <td><%= user.username %></td>
-      </tr>
+    <%= link_to "View Group Expenses", group_expenses_path(@group), class: 'button-1'%>
+
+  <% else %>
+  <h3 class = "wrapper"> To View Summary you need to be a member of this group</h3>
+  <div class = "wrapper">
+    <%= form_tag(memberships_path) do %>
+      <%= hidden_field_tag 'id', @group.id %>
+      <%= submit_tag "Join Group", class: 'button-1' %>
     <% end %>
-  </tbody>
-</table>
-<br>
-
-<%= pie_chart Group.group(:expense).count %>
-
-  <%= link_to "View Group Expenses", group_expenses_path(@group), class: 'button-1'%>
-
-<% else %>
-<h3> To View Summary you need to be a member of this group</h3>
-  <%= form_tag(memberships_path) do %>
-    <%= hidden_field_tag 'id', @group.id %>
-    <%= submit_tag "Join Group", class: 'button-1' %>
+</div>
   <% end %>
-
-<% end %>
-<br>
+  <br>
+</div>
