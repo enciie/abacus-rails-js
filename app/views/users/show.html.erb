@@ -1,11 +1,8 @@
-<div class="wrapper">
-  <h1>ABACUS</h1><br>
-</div>
-  <h4>Hi, <%= current_user.username.upcase %></h4>
+<h4>Hi, <%= current_user.username.upcase %></h4>
 
   <h3>Here Are Your Most Recent Groups:</h3>
     <%= render partial: 'groups/table', locals: {groups: @groups.active_groups.recent}%>
-  <br><br>
+  <br>
 
   <h3>Inactive groups:</h3>
     <%= render partial: 'groups/table', locals: {groups: @groups.inactive_groups.recent }%>
