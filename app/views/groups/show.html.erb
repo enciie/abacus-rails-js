@@ -10,14 +10,17 @@
 
 <br><br>
 
-Group Members:
+
+<h4>Group Members:</h4>
+<ul>
 <% @group.users.each do |user|%>
-  <%= user.username %>
+  <li><%= user.username %></li>
 <% end %>
+</ul><br>
 
 <%= form_tag(memberships_path) do %>
     <%= hidden_field_tag 'id', @group.id %>
-    <%= submit_tag "Join Group"%>
+    <%= submit_tag "Join Group", class: 'button-1' %>
 <% end %>
 
 <br><br>

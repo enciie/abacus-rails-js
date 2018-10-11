@@ -7,9 +7,10 @@ class MembershipsController < ApplicationController
   end
 
   def create
-    @group = Group.find_by(params[:id])
-    @membership = current_user.memberships.build(:group_id => params[:group_id])
-    if @membership.save
+    @group = Group.find(params[:id])
+    @membership = current_user.memberships.build(:group_id => params[:id])
+    if @membership.valid?
+      @membership.save
       flash[:notice] = "You have joined this group."
       redirect_to group_path(@group)
     else
