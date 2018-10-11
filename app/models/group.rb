@@ -45,4 +45,12 @@ class Group < ApplicationRecord
     self.expenses.average(:amount)
   end
 
+  def user_count
+    self.users.count
+  end
+
+  def split
+    self.total_expenses / self.user_count
+  end
+
 end

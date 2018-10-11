@@ -4,7 +4,6 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.all
-    @membership = Membership.new
   end
 
   def new
@@ -12,6 +11,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    # @group = Group.find_by(id: params[:id])
   end
 
   def create
