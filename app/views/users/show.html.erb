@@ -1,8 +1,8 @@
 <% if current_user.groups.empty? %>
 <div class="wrapper">
-  <br>
+  <%= image_tag "dollar.jpg", :height => '400px' %>
   <h4>Hi, <%= current_user.username %></h4><br>
-  <h4>You don't have any groups</h4>
+  <h4>You don't have any expense groups you are currently tracking.</h4>
 </div>
 <% else %>
   <h4>Hi, <%= current_user.username %></h4><br>
