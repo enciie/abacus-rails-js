@@ -9,9 +9,10 @@
 <% end %>
 
 <h3>For <%= @expense.group.name %></h3><br>
+
 <%= form_for [@group, @expense] do |f| %>
   <%= f.label :description %><br>
-  <%= f.text_field :description %><br>
+  <%= f.text_field :description%><br>
   <%= f.label :amount %><br>
   <%= f.text_field :amount, value: number_to_currency(f.object.amount.to_f, delimiter: '', unit: ''), step: :any %><br><br>
   <%= f.label "Please Select Or Create A Category" %><br>
@@ -21,5 +22,5 @@
         <option value="<%= category.name %>">
       <% end %>
     </datalist><br><br>
-  <%= f.submit 'Submit', :class => 'button-1' %> <%= link_to "Cancel", group_expenses_path, class: 'button-1' %><br>
+  <%= f.submit 'Submit', :class => 'button-3' %> <%= link_to "Cancel", group_expenses_path, class: 'button-2' %><br>
 <% end %>

@@ -298,3 +298,11 @@ th {
           font-size: 15px;
           font-weight: bold;
       }
+
+      textarea.center-input {
+        text-align: center;
+        }
+
+      input.center-input {
+        text-align: center;
+      }
