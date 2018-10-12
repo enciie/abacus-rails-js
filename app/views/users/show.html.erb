@@ -1,10 +1,12 @@
-<h4>Hi, <%= current_user.username %></h4><br>
-
 <% if current_user.groups.empty? %>
 <div class="wrapper">
+  <br>
+  <h4>Hi, <%= current_user.username %></h4><br>
   <h4>You don't have any groups</h4>
 </div>
 <% else %>
+  <h4>Hi, <%= current_user.username %></h4><br>
+
   <h3>Here Are Your Most Recent Groups:</h3>
     <%= render partial: 'groups/table', locals: {groups: @groups.active_groups.recent}%>
   <br>

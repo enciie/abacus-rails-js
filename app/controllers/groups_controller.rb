@@ -3,15 +3,11 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   def index
-<<<<<<< HEAD
     @groups = Group.search(params[:term])
   end
 
   def most_popular
     @groups = Group.search(params[:term])
-=======
-    @groups = Group.all
->>>>>>> f93afb354290b8eaba4a87d4e875b2b570a45523
   end
 
   def new
@@ -20,13 +16,10 @@ class GroupsController < ApplicationController
 
   def show
     # @group = Group.find_by(id: params[:id])
-<<<<<<< HEAD
     if @group.nil?
       redirect_to groups_path
       flash[:error] = "Group Not Found"
     end
-=======
->>>>>>> f93afb354290b8eaba4a87d4e875b2b570a45523
   end
 
   def create

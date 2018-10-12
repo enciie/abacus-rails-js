@@ -1,6 +1,6 @@
 <div class="login-form">
   <h2 class="text-center">Log in</h2>
-  <div class="form-group">
+  <div class="wrapper">
     <%= form_for(:session, url: login_path) do |f| %>
       <%= f.text_field :username, class: 'form-control', placeholder: 'Username', required: 'required' %><br>
       <%= f.password_field :password, class: 'form-control', placeholder: 'Password', required: 'required' %><br><br>
