@@ -7,7 +7,11 @@ class GroupsController < ApplicationController
   end
 
   def most_popular
-    @groups = Group.search(params[:term])
+    @groups = if params[:term]
+      Group.where('name LIKE ?', "%#{params[:term]}%")
+    else
+      Group.all
+    end
   end
 
   def new
