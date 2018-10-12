@@ -12,7 +12,7 @@
 
     <% if @group.users.include?(current_user) %>
       <%= render :partial => 'table' %>
-      <h3><strong>TOTAL AMOUNT: </strong><%= number_to_currency(@group.total_expenses)%></h3>
+      <h3 class="wrapper"><strong>TOTAL AMOUNT: </strong><%= number_to_currency(@group.total_expenses)%></h3>
       <div class="wrapper">
         <%= link_to "Add New Expense", new_group_expense_path(@group), class: 'button-1'%>
       </div>

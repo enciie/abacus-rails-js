@@ -150,6 +150,7 @@ th {
   #groups td, #groups th {
     border: 1px solid #ddd;
     padding: 8px;
+    text-align: center;
     width: 20%
   }
 
@@ -160,29 +161,55 @@ th {
   #groups th {
       padding-top: 12px;
       padding-bottom: 12px;
-      text-align: left;
+      text-align: center;
+      background-color: #adebeb;
+      color: black;
+  }
+
+  #groups-exp {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  #groups-exp td, #groups-exp th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    width: 16%
+  }
+
+  #groups-exp tr:nth-child(even){background-color: #f2f2f2;}
+
+  #groups-exp tr:hover {background-color: #ddd;}
+
+  #groups-exp th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: center;
       background-color: #adebeb;
       color: black;
   }
 
   #groups-summary {
     border-collapse: collapse;
-    width: 50%;
+    width: 40%;
   }
 
   #groups-summary td, #groups-summary th {
     border: 1px solid #ddd;
-    padding: 8px;
+    text-align: center;
+    padding: 4px;
   }
+
 
   #groups-summary tr:nth-child(even){background-color: #f2f2f2;}
 
   #groups-summary tr:hover {background-color: #ddd;}
 
   #groups-summary th {
-      padding-top: 12px;
-      padding-bottom: 12px;
-      text-align: left;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      text-align: center;
       background-color: #adebeb;
       color: black;
   }
@@ -194,7 +221,7 @@ th {
 
   /* buttons */
 
-  .button-1 {
+  .button-1:link, .button-1:visited {
     background-color: #2db9b9;
     border: none;
     color: white;
@@ -207,6 +234,46 @@ th {
     width: 250px;
     cursor: pointer;
   }
+
+  .button-1:hover, .button-1:active {
+    background-color: #e0e0e0;
+    color: white;
+}
+
+  .button-2:link, .button-2:visited {
+    background-color: #2db9b9;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    width: 150px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+
+  .button-2:hover, .button-2:active {
+    background-color: #e0e0e0;
+    color: white;
+}
+
+.button-3 {
+  background-color: #2db9b9;
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  width: 150px;
+  cursor: pointer;
+}
 
   /* log in form */
 
