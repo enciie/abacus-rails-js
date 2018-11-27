@@ -17,9 +17,7 @@ function attachExpenseListeners(){
      data: $(this).serialize(), //either JSON or querystring serializing
      success: function(response) {
        // empties the input after successful action
-       $("#expense_description").val("")
-       $("#expense_amount").val("0.00")
-       $("#expense_category_name").val("")
+       emptyInput();
        //create new instance of expense model
        let expense = new Expense(response);
        // expense => {id: 211, description: "5 Cents", amount: 0.05, date: "11/25/2018", category_name: "Gifts", …}
@@ -42,9 +40,7 @@ function attachExpenseListeners(){
   //end of submit new expense
 
   $("#cancel-add-expense").on("click", function(event) {
-    $("#expense_description").val("")
-    $("#expense_amount").val("0.00")
-    $("#expense_category_name").val("")
+    emptyInput();
     event.preventDefault();
   })
   //end of cancel expense
@@ -103,6 +99,13 @@ function formatDate(date) {
   return [month, day, year].join('/');
 }
 // end of formatDate
+
+function emptyInput() {
+  $("#expense_description").val("")
+  $("#expense_amount").val("0.00")
+  $("#expense_category_name").val("")
+}
+//end of emptyInput
 
 class Expense{
   constructor(json) {
