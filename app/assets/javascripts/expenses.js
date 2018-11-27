@@ -50,11 +50,9 @@ function attachExpenseListeners(){
     event.preventDefault();
     let $pencilIcon = event.target
     let url = $pencilIcon.href
-    debugger
     $.get(url, function(response){
       $(".expense-form-container").hide();
       $(".edit-expense").html(response)
-      debugger
     })
     // end of get call
   })

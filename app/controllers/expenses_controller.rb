@@ -74,7 +74,7 @@ class ExpensesController < ApplicationController
     # @expense = @group.expenses.find_by(id: params[:id])
     if @expense.update(expense_params)
       flash[:notice] = "Successfully Updated The Expense"
-      redirect_to group_expenses_path(@group)
+      redirect_to group_path(@group)
     else
       render 'edit'
     end
