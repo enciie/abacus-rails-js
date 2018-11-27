@@ -129,28 +129,31 @@ class Expense{
     this.category_name = json.category.name;
     this.groupId = json.group.id;
   }
+  //end of constructor
+
+  addExpenseHtml(){
+    // adds the newly created expense to bototm of the table
+    let trHTML = "";
+    trHTML += '<tr><td>' + this.description + '</td><td> $' + this.amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,") + '</td><td>'
+    trHTML += this.date + '</td><td>' + this.category_name + '</td>'
+    trHTML += '<td>' + `<a class="glyphicon glyphicon-pencil" id="pencil-icon" href="/groups/${this.groupId}/expenses/${this.id}/edit">` + '</td>'
+    trHTML += '<td>' + `<a data-confirm="Are you sure?" class="glyphicon glyphicon-trash" id="trash-icon" rel="nofollow" data-method="delete" href="/groups/${this.groupId}/expenses/${this.id}"></a>` + '</td></tr>';
+    $("#groups-exp").append(trHTML)
+  }
+  //end of prototype addExpenseHtml
+
+  updateTotalHtml(){
+    // updates the total amount
+    let $total = $("div.total")
+    let currentTotal = Number($("div.total").text().replace(/[^0-9.-]+/g,""))
+    let amount = this.amount;
+    let total = currentTotal + this.amount;
+
+    total = total.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")
+    let totalHTML = '<h3>TOTAL $' + total + '</h3>'
+    $total.html($(totalHTML));
+  }
+  //end of prototype updateTotalHtml
+
 }
 //end of class Expense
-
-Expense.prototype.addExpenseHtml = function(){
-  // adds the newly created expense to bototm of the table
-  let trHTML = "";
-  trHTML += '<tr><td>' + this.description + '</td><td> $' + this.amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,") + '</td><td>'
-  trHTML += this.date + '</td><td>' + this.category_name + '</td>'
-  trHTML += '<td>' + `<a class="glyphicon glyphicon-pencil" id="pencil-icon" href="/groups/${this.groupId}/expenses/${this.id}/edit">` + '</td>'
-  trHTML += '<td>' + `<a data-confirm="Are you sure?" class="glyphicon glyphicon-trash" id="trash-icon" rel="nofollow" data-method="delete" href="/groups/${this.groupId}/expenses/${this.id}"></a>` + '</td></tr>';
-  $("#groups-exp").append(trHTML)
-}
-//end of prototype addExpenseHtml
-
-Expense.prototype.updateTotalHtml = function(){
-  // updates the total amount
-  let $total = $("div.total")
-  let currentTotal = Number($("div.total").text().replace(/[^0-9.-]+/g,""))
-  let amount = this.amount;
-  let total = currentTotal + this.amount;
-
-  total = total.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")
-  let totalHTML = '<h3>TOTAL $' + total + '</h3>'
-  $total.html($(totalHTML));
-}
