@@ -2,14 +2,14 @@
 
 Search By Group Name:
 <div class="form-group">
-  <%= form_tag(groups_path, method: :get) do %>
+  <%= form_tag(group_list_path, method: :get) do %>
     <%= text_field_tag :term, params[:term]%>
     <%= submit_tag 'Search', name: nil %>
   <% end %>
 </div>
 
 <div class="form-group">
-  <%= link_to "View By Most Popular", groups_most_popular_path %>
+  <%= link_to "View By Most Popular", most_popular_group_list_path %>
 </div>
 
 <table id="groups">
