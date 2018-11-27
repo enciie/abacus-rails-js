@@ -55,6 +55,10 @@ function attachGroupListeners(){
   })
   //end of pencil icon
 
+  $("#inactive-group-btn").on("click", (event)=> {
+    $("div.inactive_groups").toggle();
+  });
+
 }
 //end of attachGroupListeners
 

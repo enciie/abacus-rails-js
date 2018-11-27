@@ -27,6 +27,7 @@
 
         <%# if !current_user.groups.inactive_groups.empty? %>
         <h3>Inactive groups:</h3>
+        <button id="inactive-group-btn">Hide/Show</button>
           <div class="inactive_groups">
             <%= render partial: 'groups/table', locals: {groups: @groups.inactive_groups.recent }%>
           </div>
