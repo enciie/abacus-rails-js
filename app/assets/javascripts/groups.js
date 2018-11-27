@@ -113,7 +113,6 @@ function attachGroupListeners(){
   //groups index page view button
   $("div.group-list-table").on("click", "#eye-icon-group-info", (e)=> {
     alert("You poked my eye")
-    e.preventDefault();
     let url = event.target.href + ".json"
     let $div = $("div.group-info")
     let $ol = $("div.group-info ol")
@@ -125,23 +124,24 @@ function attachGroupListeners(){
       let infoHtml = "";
       let users = json.users
       let expenses = json.expenses
-      infoHtml += '<h4> GROUP: ' + json.name + '</h4>'
-      infoHtml += '<p> Total Expenses in this group: ' + expenses.length + '</p>'
+      infoHtml += '<h3> GROUP: ' + json.name + '</h3>'
       infoHtml += '<h5> Group Members: </h5>'
       $div.append(infoHtml)
 
       users.forEach(function(user){
         $div.append("<li>" + user.username + "</li>")
-        debugger
       })
+
+      $div.append('<p> Total Expenses in this group: ' + expenses.length + '</p>')
 
       expenses.forEach(function(expense){
         let amount = parseFloat(expense.amount)
         total += amount
       })
       $div.append("<p> TOTAL: $" + total.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,") + "</p>")
-
+      debugger
     })
+    e.preventDefault();
     //end of get call
   })
   //end of eye-icon-group
