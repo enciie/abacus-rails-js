@@ -58,6 +58,44 @@ function attachExpenseListeners(){
   })
   //end of pencil icon
 
+  $(".wrapper").on("click", "#previous-button", function(e) {
+    e.preventDefault();
+    let previousId = parseInt($("#previous-button").attr("data-groupid"))-1
+    let url = "/groups/" + previousId + ".json"
+    $.get(url, function(json){
+      //update group name
+      $("#group-name").text(json.name)
+      //update the data-group-id for all buttons
+      updateGroupId(previousId)
+      //remove previous table and total amount
+      let $table = $("#groups-exp tbody")
+      $table.remove();
+      $("div.total").html("");
+      updateTableHtml(json)
+    })
+    //end of get call
+  })
+  // end of previous-button
+
+  $(".wrapper").on("click", "#next-button", function(e) {
+    e.preventDefault();
+    let nextId = parseInt($("#previous-button").attr("data-groupid"))+1
+    let url = "/groups/" + nextId + ".json"
+    $.get(url, function(json){
+      //update group name
+      $("#group-name").text(json.name)
+      //update the data-group-id for all buttons
+      updateGroupId(nextId)
+      //remove previous table and total amount
+      let $table = $("#groups-exp tbody")
+      $table.remove();
+      $("div.total").html("");
+      updateTableHtml(json)
+    })
+    //end of get call
+  })
+  // end of next-button
+
 }
 //end of attachExpenseListeners
 
@@ -119,6 +157,18 @@ function emptyInput() {
   $("#expense_category_name").val("")
 }
 //end of emptyInput
+
+function updateGroupId(newGroupId){
+  //update the data-group-id for all buttons
+  $("#group-name").attr("data-groupid", newGroupId)
+  $("#previous-button").attr("data-groupid", newGroupId)
+  $("#next-button").attr("data-groupid", newGroupId)
+  //update groupid for form
+  $("form.new_expense").attr("action", "/groups/" + newGroupId + "/expenses")
+  //update table groupid
+  $("#groups-exp").attr("data-groupid", newGroupId)
+}
+//end of UpdateGroupID
 
 class Expense{
   constructor(json) {

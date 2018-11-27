@@ -60,9 +60,14 @@ function attachGroupListeners(){
     $("div.inactive_groups").toggle();
   });
 
-  $("div#group-expenses-page").on("click", "#group-summary", (e)=> {
-     $("div.group-summary-container").toggle();
+  // $("div#group-expenses-page").on("click", "#group-summary", (e)=> {
+  //    $("div.group-summary-container").toggle();
+  // });
+
+  $("div#group-expenses-page").on("click", "#group-summary-reload", (e)=> {
+    $("div.group-summary-tables").load(window.location.href + " div.group-summary-tables" );
   });
+  //end of group-summary reload
 
 }
 //end of attachGroupListeners

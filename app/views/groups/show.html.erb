@@ -24,9 +24,10 @@
   <div class="edit-expense">
   </div><br>
 
-  <button id="group-summary">Group Summary</button>
+  <!-- <button id="group-summary">Group Summary</button> -->
 
-  <div class="group-summary-container", id="hidden">
+  <div class="group-summary-container">
+    <button id="group-summary-reload", data-groupid="<%= @group.id %>">Update Summary</button>
     <%= render :partial => 'expenses/summary', :locals => {:group => @group} %>
   </div>
 
