@@ -1,6 +1,6 @@
 $(document).ready(function(){
   createGroup();
-
+  attachGroupListeners();
 })
 //end of document ready
 
@@ -45,9 +45,19 @@ function createGroup(){
 }
 //end of createGroup
 
+function attachGroupListeners(){
+
+   $("#cancel-group").on("click", function(event) {
+    $("#group_name").val("")
+    event.preventDefault();
+  })
+  //end of cancel-group
+
+}
+//end of attachGroupListeners
+
 class Group {
   constructor(json) {
-    debugger
     this.id = json.id;
     this.name = json.name;
     if (json.status === 0){

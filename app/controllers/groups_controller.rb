@@ -43,8 +43,7 @@ class GroupsController < ApplicationController
       end
       flash[:notice] = "Successfully Created A Group"
       render json: @group
-    else
-      flash[:error] = "Group Name Can't Be Blank"
+
     end
   end
 
