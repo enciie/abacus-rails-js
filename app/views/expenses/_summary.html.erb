@@ -1,4 +1,5 @@
-  <table id="groups-summary" class= "center">
+<div class="group-summary-tables", data-groupid="<%= @group.id %>">
+  <table align="center" class="groups-summary" id= "category-summary" data-groupid="<%= @group.id %>">
     <thead>
       <tr>
         <th colspan="2">By Catgeory</th>
@@ -15,7 +16,7 @@
   </table>
   <br>
 
-  <table id="groups-summary" class= "center">
+  <table align="center", class="groups-summary", id= "expense-min-max-avg", data-groupid="<%= @group.id %>">
     <thead>
       <tr>
         <th colspan="2">By Expense</th>
@@ -38,7 +39,7 @@
   </table>
   <br>
 
-  <table id="groups-summary" class= "center">
+  <table align="center", class="groups-summary", id= "split-by-member", data-groupid="<%= @group.id %>">
     <thead>
       <tr>
         <th colspan="2">Split By Member</th>
@@ -54,3 +55,4 @@
     </tbody>
   </table>
   <br>
+</div>

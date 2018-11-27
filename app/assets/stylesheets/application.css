@@ -190,23 +190,23 @@ th {
       color: black;
   }
 
-  #groups-summary {
+  .groups-summary {
     border-collapse: collapse;
     width: 40%;
   }
 
-  #groups-summary td, #groups-summary th {
+  .groups-summary td, .groups-summary th {
     border: 1px solid #ddd;
     text-align: center;
     padding: 4px;
   }
 
 
-  #groups-summary tr:nth-child(even){background-color: #f2f2f2;}
+  .groups-summary tr:nth-child(even){background-color: #f2f2f2;}
 
-  #groups-summary tr:hover {background-color: #ddd;}
+  .groups-summary tr:hover {background-color: #ddd;}
 
-  #groups-summary th {
+  .groups-summary th {
       padding-top: 8px;
       padding-bottom: 8px;
       text-align: center;
