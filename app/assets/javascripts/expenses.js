@@ -62,6 +62,7 @@ function attachExpenseListeners(){
     e.preventDefault();
     let previousId = parseInt($("#previous-button").attr("data-groupid"))-1
     let url = "/groups/" + previousId + ".json"
+    let urlSummary = "/groups/" + previousId
     $.get(url, function(json){
       //update group name
       $("#group-name").text(json.name)
@@ -72,6 +73,8 @@ function attachExpenseListeners(){
       $table.remove();
       $("div.total").html("");
       updateTableHtml(json)
+      //reloads the div group-summary-tables based on the urlSummary
+      $("div.group-summary-tables").load(urlSummary + " div.group-summary-tables" );
     })
     //end of get call
   })
@@ -81,6 +84,7 @@ function attachExpenseListeners(){
     e.preventDefault();
     let nextId = parseInt($("#previous-button").attr("data-groupid"))+1
     let url = "/groups/" + nextId + ".json"
+    let urlSummary = "/groups/" + nextId
     $.get(url, function(json){
       //update group name
       $("#group-name").text(json.name)
@@ -91,6 +95,7 @@ function attachExpenseListeners(){
       $table.remove();
       $("div.total").html("");
       updateTableHtml(json)
+      $("div.group-summary-tables").load(urlSummary + " div.group-summary-tables" );
     })
     //end of get call
   })
@@ -167,6 +172,8 @@ function updateGroupId(newGroupId){
   $("form.new_expense").attr("action", "/groups/" + newGroupId + "/expenses")
   //update table groupid
   $("#groups-exp").attr("data-groupid", newGroupId)
+  //update group summary
+  $("#group-summary-reload").attr("data-groupid", newGroupId)
 }
 //end of UpdateGroupID
 

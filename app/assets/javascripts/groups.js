@@ -65,10 +65,8 @@ function attachGroupListeners(){
   // });
 
   $("div#group-expenses-page").on("click", "#group-summary-reload", (e)=> {
-    debugger
     let groupId = parseInt($("#group-summary-reload").attr("data-groupid"))
     let url = "/groups/" + groupId
-    debugger
     $("div.group-summary-tables").load(url + " div.group-summary-tables" );
   });
   //end of group-summary reload
