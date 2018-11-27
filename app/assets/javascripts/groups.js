@@ -56,8 +56,12 @@ function attachGroupListeners(){
   //end of pencil icon
 
   //hide/show inactive groups table
-  $("#inactive-group-btn").on("click", (event)=> {
+  $("#inactive-group-btn").on("click", (e)=> {
     $("div.inactive_groups").toggle();
+  });
+
+  $("div#group-expenses-page").on("click", "#group-summary", (e)=> {
+     $("div.group-summary-container").toggle();
   });
 
 }
