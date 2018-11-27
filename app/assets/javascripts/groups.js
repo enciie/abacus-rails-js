@@ -14,25 +14,28 @@ function createGroup(){
       data: $(this).serialize(),
       success: function(response){
         debugger
-        //empties the input after successful action
-        $("#group_name").val("")
-        //creates new instance of our group model
-        let group = new Group(response)
-        // add newly created group to the top of the table
-        let trHTML = "";
-        trHTML += '<tr><td>' + group.name + '</td><td>' + group.status + '</td>'
-        trHTML += '<td>' + `<a class="glyphicon glyphicon-eye-open" id="eye-icon" href="/groups/${group.id}"></a>` + '</td>'
-        trHTML += '<td>' + `<a class="glyphicon glyphicon-pencil" id="pencil-icon" href="/groups/${group.id}/edit">` +  '</td>'
-        trHTML += '<td>' + `<a data-confirm="Are you sure?" class="glyphicon glyphicon-trash" id="trash-icon" rel="nofollow" data-method="delete" href="/groups/${group.id}"></a>` + '</td></tr>'
-          if (group.status === "Active") {
-            debugger
-            $("div.active_groups table").prepend(trHTML)
-          } else {
-            debugger
-            $("div.inactive_groups table").prepend(trHTML)
-          }
-          //end of if else
+        if (response === undefined){
           debugger
+          alert("Group Name cant be blank")
+        } else {
+          //empties the input after successful action
+          $("#group_name").val("")
+          //creates new instance of our group model
+          let group = new Group(response)
+          // add newly created group to the top of the table
+          let trHTML = "";
+          trHTML += '<tr><td>' + group.name + '</td><td>' + group.status + '</td>'
+          trHTML += '<td>' + `<a class="glyphicon glyphicon-eye-open" id="eye-icon" href="/groups/${group.id}"></a>` + '</td>'
+          trHTML += '<td>' + `<a class="glyphicon glyphicon-pencil" id="pencil-icon" href="/groups/${group.id}/edit">` +  '</td>'
+          trHTML += '<td>' + `<a data-confirm="Are you sure?" class="glyphicon glyphicon-trash" id="trash-icon" rel="nofollow" data-method="delete" href="/groups/${group.id}"></a>` + '</td></tr>'
+            if (group.status === "Active") {
+              $("div.active_groups table").prepend(trHTML)
+            } else {
+              $("div.inactive_groups table").prepend(trHTML)
+            }
+            //end of if/else
+        }
+        //end of if/else
       }
       //end of success
     })
@@ -44,6 +47,7 @@ function createGroup(){
 
 class Group {
   constructor(json) {
+    debugger
     this.id = json.id;
     this.name = json.name;
     if (json.status === 0){
