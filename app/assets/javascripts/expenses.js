@@ -25,16 +25,21 @@ function attachExpenseListeners(){
        // expense => {id: 211, description: "5 Cents", amount: 0.05, date: "11/25/2018", category_name: "Gifts", …}
        expense.addExpenseHtml();
        //adds the newly created expense to the bottom of the table
-       debugger
-       }
-       //end of if/else
-     }
-     //end of success
-   });
-   //end of ajax
-   return false;
- })
- //end of submit new expense
+       if ($.trim($("div.total").html())==''){
+        //if the total is empty, for the first expense
+        $("div.total").html('<h3> TOTAL $' + expense.amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,") + '</h3>')
+        } else {
+          expense.updateTotalHtml();
+          //updates the total amount
+        }
+        //end of if/else
+      }
+      //end of success
+    });
+    //end of ajax
+    return false;
+  })
+  //end of submit new expense
 
 }
 //end of attachExpenseListeners
@@ -113,3 +118,15 @@ Expense.prototype.addExpenseHtml = function(){
   $("#groups-exp").append(trHTML)
 }
 //end of prototype addExpenseHtml
+
+Expense.prototype.updateTotalHtml = function(){
+  // updates the total amount
+  let $total = $("div.total")
+  let currentTotal = Number($("div.total").text().replace(/[^0-9.-]+/g,""))
+  let amount = this.amount;
+  let total = currentTotal + this.amount;
+
+  total = total.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")
+  let totalHTML = '<h3>TOTAL $' + total + '</h3>'
+  $total.html($(totalHTML));
+}
