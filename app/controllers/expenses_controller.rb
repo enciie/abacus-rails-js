@@ -26,6 +26,10 @@ class ExpensesController < ApplicationController
     # @group = current_user.groups.find_by(id: params[:group_id])
     if @group
       @expense = @group.expenses.new
+      respond_to do |format|
+        format.html {render :new}
+        format.json {render json: @expense}
+      end
     else
       redirect_to groups_path
     end
@@ -38,9 +42,11 @@ class ExpensesController < ApplicationController
     if @expense.valid?
       @expense.save
       flash[:notice] = "Successfully Created An Expense"
-      redirect_to group_expenses_path(@group) #Group/expense show page
+      render json: @expense
+      # redirect_to group_expenses_path(@group) #Group/expense show page
     else
-      render 'new'
+      flash[:error] = "Please fill in all fields"
+      redirect_to group_path(@group)
     end
   end
 
@@ -78,7 +84,7 @@ class ExpensesController < ApplicationController
     # @expense = @group.expenses.find_by(id: params[:id])
     if @expense.delete
       flash[:notice] = "Successfully Deleted The Expense"
-      redirect_to group_expenses_path(@group)
+      redirect_to group_path(@group)
     end
   end
 

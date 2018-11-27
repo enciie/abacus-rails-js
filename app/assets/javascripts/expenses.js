@@ -3,8 +3,41 @@ $(document).ready(function(){
   if(window.location.href.indexOf("groups") > -1){
    loadExpenses();
   }
+  attachExpenseListeners()
 })
 //end of document ready
+
+function attachExpenseListeners(){
+  //Submits new expenses
+ $("form.new_expense").on("submit", function(event) {
+   event.preventDefault();
+   $.ajax({
+     type: "POST",
+     url: this.action,
+     data: $(this).serialize(), //either JSON or querystring serializing
+     success: function(response) {
+       // empties the input after successful action
+       $("#expense_description").val("")
+       $("#expense_amount").val("0.00")
+       $("#expense_category_name").val("")
+       //create new instance of expense model
+       let expense = new Expense(response);
+       // expense => {id: 211, description: "5 Cents", amount: 0.05, date: "11/25/2018", category_name: "Gifts", …}
+       expense.addExpenseHtml();
+       //adds the newly created expense to the bottom of the table
+       debugger
+       }
+       //end of if/else
+     }
+     //end of success
+   });
+   //end of ajax
+   return false;
+ })
+ //end of submit new expense
+
+}
+//end of attachExpenseListeners
 
 // Loads all expenses
 function loadExpenses(){
@@ -45,27 +78,38 @@ function updateTableHtml(json){
   }
   //end of updateTableHtml
 
-  function formatDate(date) {
-    var d = new Date(date)
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
+function formatDate(date) {
+  var d = new Date(date)
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
 
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
 
-    return [month, day, year].join('/');
+  return [month, day, year].join('/');
+}
+// end of formatDate
+
+class Expense{
+  constructor(json) {
+    this.id = json.id
+    this.description = json.description;
+    this.amount = json.amount;
+    this.date = formatDate(json.created_at);
+    this.category_name = json.category.name;
+    this.groupId = json.group.id;
   }
-  // end of formatDate
+}
+//end of class Expense
 
-  class Expense{
-    constructor(json) {
-      this.id = json.id
-      this.description = json.description;
-      this.amount = json.amount;
-      this.date = formatDate(json.created_at);
-      this.category_name = json.category.name;
-      this.groupId = json.group.id;
-    }
-  }
-  //end of class Expense
+Expense.prototype.addExpenseHtml = function(){
+  // adds the newly created expense to bototm of the table
+  let trHTML = "";
+  trHTML += '<tr><td>' + this.description + '</td><td> $' + this.amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,") + '</td><td>'
+  trHTML += this.date + '</td><td>' + this.category_name + '</td>'
+  trHTML += '<td>' + `<a class="glyphicon glyphicon-pencil" id="pencil-icon" href="/groups/${this.groupId}/expenses/${this.id}/edit">` + '</td>'
+  trHTML += '<td>' + `<a data-confirm="Are you sure?" class="glyphicon glyphicon-trash" id="trash-icon" rel="nofollow" data-method="delete" href="/groups/${this.groupId}/expenses/${this.id}"></a>` + '</td></tr>';
+  $("#groups-exp").append(trHTML)
+}
+//end of prototype addExpenseHtml
