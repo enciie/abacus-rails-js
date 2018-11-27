@@ -16,6 +16,7 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
+    render :layout => false
   end
 
   def show
@@ -33,7 +34,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(group_params)
+    @group = current_user.groups.build(group_params)
     if @group.valid?
       @group.save
       @membership = current_user.memberships.build(:group_id => @group.id)
@@ -41,10 +42,9 @@ class GroupsController < ApplicationController
         @membership.save
       end
       flash[:notice] = "Successfully Created A Group"
-      redirect_to current_user
+      render json: @group
     else
       flash[:error] = "Group Name Can't Be Blank"
-      render 'new'
     end
   end
 
