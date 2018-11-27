@@ -12,27 +12,34 @@ Search By Group Name:
   <%= link_to "View By Most Popular", most_popular_group_list_path %>
 </div>
 
-<table id="groups">
-  <thead>
-    <tr>
-      <th><strong>Name</strong></th>
-      <th><strong>Created By</strong></th>
-      <th><strong>Members</strong></th>
-      <th><strong>Status</strong></th>
-      <th><strong>View</strong></th>
-    </tr>
-  </thead>
+<div class="group-info">
+  <ol>
+  </ol>
+</div>
 
-  <tbody>
-
-    <% @groups.recent.each do |group| %>
+<div class="group-list-table">  
+  <table id="groups">
+    <thead>
       <tr>
-        <td><%= group.name%></td>
-        <td><%= group.users.first.username%></td>
-        <td><%= group.user_count %></td>
-        <td><%= group.group_status %></td>
-        <td><%= link_to "", group_path(group), class: 'glyphicon glyphicon-eye-open'%></td>
+        <th><strong>Name</strong></th>
+        <th><strong>Created By</strong></th>
+        <th><strong>Members</strong></th>
+        <th><strong>Status</strong></th>
+        <th><strong>View</strong></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+
+      <% @groups.recent.each do |group| %>
+        <tr>
+          <td><%= group.name %></td>
+          <td><%= group.users.first.username %></td>
+          <td><%= group.user_count %></td>
+          <td><%= group.group_status %></td>
+          <td><%= link_to "", group_path(group), class: 'glyphicon glyphicon-eye-open', id: 'eye-icon-group-info'%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

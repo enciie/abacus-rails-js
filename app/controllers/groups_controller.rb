@@ -4,6 +4,10 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.search(params[:term])
+    respond_to do |format|
+      format.html {render :index}
+      format.json {render json: @groups, status: 200}
+    end
   end
 
   def most_popular

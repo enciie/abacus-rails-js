@@ -55,6 +55,45 @@ function attachGroupListeners(){
   })
   //end of pencil icon
 
+  // $("div.edit-group div.group-form form.edit_group").on("click", function(event){
+  //   debugger
+  //   console.log(this)
+  //   alert("You clicked me")
+  //   event.preventDefault();
+  //   debugger
+  // })
+  // // end of edit group form
+  //
+  // $("div.groups-container").on("click", "a#trash-icon", (e)=> {
+  // })
+
+  // $("div.groups-container").on("click", "a#trash-icon", (e)=> {
+  //   alert("You clicked me")
+  //   debugger
+  //   e.preventDefault();
+  //   //e.target => <a data-confirm="Are you sure?" class="glyphicon glyphicon-trash" id="trash-icon" rel="nofollow" data-method="delete" href="/groups/165"></a>
+  //   let trashIcon = e.target
+  //   let url = trashIcon.href
+  //   debugger
+  //   // url => "http://localhost:3000/groups/165"
+  //   let groupId = trashIcon.pathname.replace("/groups/", "")
+  //   // groupId = "165"
+  //
+  //   // $.post(url, {id:groupId, action:'delete'});
+  //   debugger
+  //   $.ajax({
+  //     url: url,
+  //     type: 'POST',
+  //     data: {_method: 'delete'}
+  //   })
+  //     .done(function( data ) {
+  //       console.log(data);
+  //     });
+  //   //end of success
+  //     // trashIcon.parentNode.parentElement.remove();
+  // })
+  // // //end of trash icon
+
   //hide/show inactive groups table
   $("#inactive-group-btn").on("click", (e)=> {
     $("div.inactive_groups").toggle();
@@ -70,6 +109,41 @@ function attachGroupListeners(){
     $("div.group-summary-tables").load(url + " div.group-summary-tables" );
   });
   //end of group-summary reload
+
+  //groups index page view button
+  $("div.group-list-table").on("click", "#eye-icon-group-info", (e)=> {
+    alert("You poked my eye")
+    e.preventDefault();
+    let url = event.target.href + ".json"
+    let $div = $("div.group-info")
+    let $ol = $("div.group-info ol")
+    let total = 0;
+    $div.html("")
+    // "http://localhost:3000/groups/31.json"
+    $.get(url, function(json){
+      let infoHtml = "";
+      let users = json.users
+      let expenses = json.expenses
+      infoHtml += '<h4> GROUP: ' + json.name + '</h4>'
+      infoHtml += '<p> Total Expenses in this group: ' + expenses.length + '</p>'
+      infoHtml += '<h5> Group Members: </h5>'
+      $div.append(infoHtml)
+
+      users.forEach(function(user){
+        $div.append("<li>" + user.username + "</li>")
+        debugger
+      })
+
+      expenses.forEach(function(expense){
+        let amount = parseFloat(expense.amount)
+        total += amount
+      })
+      $div.append("<p> TOTAL: $" + total.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,") + "</p>")
+
+    })
+    //end of get call
+  })
+  //end of eye-icon-group
 
 }
 //end of attachGroupListeners
