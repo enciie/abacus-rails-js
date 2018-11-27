@@ -5,7 +5,7 @@ $(document).ready(function(){
 //end of document ready
 
 function createGroup(){
-  $("form.new_group").on("submit", function(event) {
+  $("form.new_group").on("submit", (event)=> {
     event.preventDefault();
     debugger
     $.ajax({
@@ -13,9 +13,7 @@ function createGroup(){
       url: this.action,
       data: $(this).serialize(),
       success: function(response){
-        debugger
         if (response === undefined){
-          debugger
           alert("Group Name cant be blank")
         } else {
           //empties the input after successful action
@@ -47,11 +45,24 @@ function createGroup(){
 
 function attachGroupListeners(){
 
-   $("#cancel-group").on("click", function(event) {
+   $("#cancel-group").on("click", (event)=> {
     $("#group_name").val("")
     event.preventDefault();
   })
   //end of cancel-group
+
+  $("div.groups-container").on("click", "a#pencil-icon", (event)=> {
+    event.preventDefault();
+    $("#flash_notice").html("")
+    let $pencilIcon = event.target
+    let url = $pencilIcon.href
+    $.get(url, function(response){
+      $(".group-form").hide();
+      $(".edit-group").html(response)
+    })
+    // end of get call
+  })
+  //end of pencil icon
 
 }
 //end of attachGroupListeners

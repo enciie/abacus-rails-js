@@ -43,14 +43,14 @@ class GroupsController < ApplicationController
       end
       flash[:notice] = "Successfully Created A Group"
       render json: @group
-
     end
   end
 
   def update
     if @group.update(group_params)
       flash[:notice] = "Successfully Updated Group"
-      redirect_to group_expenses_path(@group)
+      # redirect_to group_expenses_path(@group)
+      redirect_to current_user
     else
       flash[:error] = "Group name can't be blank"
       render 'edit'
@@ -59,6 +59,7 @@ class GroupsController < ApplicationController
 
   def edit
     # @group = Group.find_by(id: params[:id])
+    render :layout => false
     if @group.nil?
       redirect_to groups_path
       flash[:error] = "Group Not Found"
