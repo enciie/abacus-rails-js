@@ -22,6 +22,10 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     if @user && @user == current_user
       @groups = @user.groups
+      respond_to do |format|
+        format.html {render :show}
+        format.json {render json: @user, status: 200}
+      end
     else
       redirect_to root_path
     end

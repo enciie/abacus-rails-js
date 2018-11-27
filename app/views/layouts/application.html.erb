@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>AbacusRailsProject</title>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
     <%= stylesheet_link_tag    '//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag '//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js', 'data-turbolinks-track' => true %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -13,7 +14,7 @@
   <body>
 
     <header>
-    <a href="<%= root_url %>" class = "button" />My Groups</a>
+    <a href="<%= root_url %>" class = "button" >My Groups</a>
 
     <% if current_user %>
       <%= link_to("All Groups", groups_path, :class => "button")%>

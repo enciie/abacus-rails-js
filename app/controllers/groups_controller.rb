@@ -20,10 +20,16 @@ class GroupsController < ApplicationController
 
   def show
     # @group = Group.find_by(id: params[:id])
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json: @group, status: 200}
+    end
+
     if @group.nil?
       redirect_to groups_path
       flash[:error] = "Group Not Found"
     end
+
   end
 
   def create

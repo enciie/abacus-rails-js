@@ -15,6 +15,10 @@ class ExpensesController < ApplicationController
       flash[:error] = "You do not have permission to view this group"
     else
       @expenses = @group.expenses.order("#{sort_column} #{sort_direction}")
+      respond_to do |format|
+        format.html {render :index}
+        format.json {render json: @expenses, status: 200}
+      end
     end
   end
 
