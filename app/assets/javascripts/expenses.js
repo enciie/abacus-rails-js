@@ -45,6 +45,21 @@ function attachExpenseListeners(){
   })
   //end of cancel expense
 
+  //pencil icon - edit expense
+  $("div.exp-container").on("click", "a#pencil-icon", function(event) {
+    event.preventDefault();
+    let $pencilIcon = event.target
+    let url = $pencilIcon.href
+    debugger
+    $.get(url, function(response){
+      $(".expense-form-container").hide();
+      $(".edit-expense").html(response)
+      debugger
+    })
+    // end of get call
+  })
+  //end of pencil icon
+
 }
 //end of attachExpenseListeners
 

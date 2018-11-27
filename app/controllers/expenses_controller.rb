@@ -53,16 +53,17 @@ class ExpensesController < ApplicationController
   def edit
     # @group = current_user.groups.find_by(id: params[:group_id])
     if @group.nil?
-      redirect_to group_expenses_path
+      redirect_to group_path(@group)
     elsif
       !@group.users.ids.include?(current_user.id)
-      redirect_to groups_path
+      redirect_to current_user
       flash[:error] = "You do not have permission to edit this expense"
     else
       @expense = @group.expenses.find_by(id: params[:id])
       @categories = Category.all.map{|c| [ c.name, c.id ] }
+      render :layout => false
         if @expense.nil?
-          redirect_to group_expenses_path
+          redirect_to group_path(@group)
           flash[:error] = "Expense Not Found For This Group"
         end
     end
