@@ -7,7 +7,6 @@ $(document).ready(function(){
 //end of document ready
 
 // Loads all expenses
-
 function loadExpenses(){
   let url = this.location.href
   // "http://localhost:3000/groups/4"
@@ -58,3 +57,15 @@ function updateTableHtml(json){
     return [month, day, year].join('/');
   }
   // end of formatDate
+
+  class Expense{
+    constructor(json) {
+      this.id = json.id
+      this.description = json.description;
+      this.amount = json.amount;
+      this.date = formatDate(json.created_at);
+      this.category_name = json.category.name;
+      this.groupId = json.group.id;
+    }
+  }
+  //end of class Expense
