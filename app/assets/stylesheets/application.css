@@ -310,3 +310,8 @@ th {
   #hidden{
     display:none;
   }
+
+  .group-info {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+  }

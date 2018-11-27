@@ -118,6 +118,7 @@ function attachGroupListeners(){
     let $div = $("div.group-info")
     let $ol = $("div.group-info ol")
     let total = 0;
+    $div.show()
     $div.html("")
     // "http://localhost:3000/groups/31.json"
     $.get(url, function(json){
