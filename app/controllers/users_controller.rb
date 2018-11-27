@@ -22,6 +22,8 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     if @user && @user == current_user
       @groups = @user.groups
+      # @group for create new group form
+      @group = Group.new
       respond_to do |format|
         format.html {render :show}
         format.json {render json: @user, status: 200}
