@@ -1,15 +1,34 @@
-<div class = "wrapper">
-  <h1>Group Summary <%= @group.name %></h1><br>
-</div>
-<% if @group.users.include?(current_user) %>
+<div class="wrapper", id="group-expenses-page">
+  <% if @group.users.include?(current_user) %>
 
-  <%= render :partial => 'expenses/summary', :locals => {:group => @group} %>
+  <h1 data-groupId="<%= @group.id %>", id="group-name"><%= @group.name%></h1>
 
-<div class = "wrapper">
-    <h3><strong>Total Amount: </strong><%= number_to_currency(@group.total_expenses)%></h3>
+  <section class="next-previous">
+    <!-- next/previous buttons -->
+    <a href="#" class="js-more button", data-groupid="<%= @group.id %>", id="previous-button">Previous Group</a>
+    <a href="#" class="js-more button", data-groupid="<%= @group.id %>", id="next-button">Next Group</a><br>
+  </section>
   <br>
 
-    <%= link_to "View Group Expenses", group_expenses_path(@group), class: 'button-1'%>
+  <div class="exp-container">
+    <%= render 'expenses/table'%>
+  </div>
+
+  <div class="total">
+  </div><br>
+
+  <div class="expense-form-container">
+    <%= render 'expenses/form' %>
+  </div><br>
+
+  <div class="edit-expense">
+  </div><br>
+
+  <button id="group-summary">Group Summary</button>
+
+  <div class="group-summary-container", id="hidden">
+    <%= render :partial => 'expenses/summary', :locals => {:group => @group} %>
+  </div>
 
   <% else %>
   <h3 class = "wrapper"> To View Summary you need to be a member of this group</h3>

@@ -8,8 +8,6 @@
   </div>
 <% end %>
 
-<h3>For <%= @expense.group.name %></h3><br>
-
 <%= form_for [@group, @expense] do |f| %>
   <%= f.label :description %><br>
   <%= f.text_field :description%><br>
@@ -22,5 +20,5 @@
         <option value="<%= category.name %>">
       <% end %>
     </datalist><br><br>
-  <%= f.submit 'Submit', :class => 'button-3' %> <%= link_to "Cancel", group_expenses_path, class: 'button-2' %><br>
+  <%= f.submit 'Submit', :class => 'button-3', :id => 'submit-expense' %> <%= link_to "Cancel", group_path, class: 'button-2', id: 'cancel-add-expense' %><br>
 <% end %>

@@ -1,25 +1,25 @@
-<%= last_updated @group %><br>
-<table id="groups-exp", class="table table-bordered table-striped">
+  <!-- <%= last_updated @group %><br> -->
+<table id="groups-exp", data-groupid=<%=  @group.id%> class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th><%= sort_link "description" %></th>
-      <th><%= sort_link "amount" %></th>
-      <th><%= sort_link "created_at", "Added On" %></th>
-      <th><%= sort_link "category_id", "Category" %></th>
+      <th>Description</th>
+      <th>Amount</th>
+      <th>Added On</th>
+      <th>Category</th>
       <th>Edit</th>
       <th>Delete</th>
     </tr>
   </thead>
-  <tbody>
+  <!-- <tbody>
     <%@expenses.each do |expense|%>
       <tr>
         <td><%= expense.description%></td>
         <td><%= number_to_currency(expense.amount) %></td>
         <td><%= expense.created_at.strftime "%B %e, %Y" %></td>
         <td><%= expense.category_name %></td>
-        <td><%= link_to "", edit_group_expense_path(expense.group_id, expense.id), class: 'glyphicon glyphicon-pencil' %></td>
-        <td><%= link_to "", group_expense_path(expense.group_id, expense.id), method: :delete, data: { confirm: "Are you sure?" }, class: 'glyphicon glyphicon-trash' %></td>
+        <td><%= link_to "", edit_group_expense_path(expense.group_id, expense.id), class: 'glyphicon glyphicon-pencil', id: 'pencil-icon' %></td>
+        <td><%= link_to "", group_expense_path(expense.group_id, expense.id), method: :delete, data: { confirm: "Are you sure?" }, class: 'glyphicon glyphicon-trash', id: 'trash-icon' %></td>
       </tr>
     <%end %>
-  </tbody>
+  </tbody> -->
 </table>

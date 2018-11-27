@@ -21,6 +21,8 @@ class GroupsController < ApplicationController
 
   def show
     # @group = Group.find_by(id: params[:id])
+    @expense = Expense.new
+    @expenses = @group.expenses
     respond_to do |format|
       format.html {render :show}
       format.json {render json: @group, status: 200}

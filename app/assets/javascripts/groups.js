@@ -35,7 +35,7 @@ function createGroup(){
 //end of createGroup
 
 function attachGroupListeners(){
-
+  //clears input on form
    $("#cancel-group").on("click", (event)=> {
     $("#group_name").val("")
     event.preventDefault();
@@ -55,6 +55,7 @@ function attachGroupListeners(){
   })
   //end of pencil icon
 
+  //hide/show inactive groups table
   $("#inactive-group-btn").on("click", (event)=> {
     $("div.inactive_groups").toggle();
   });
