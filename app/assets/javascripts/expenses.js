@@ -41,6 +41,14 @@ function attachExpenseListeners(){
   })
   //end of submit new expense
 
+  $("#cancel-add-expense").on("click", function(event) {
+    $("#expense_description").val("")
+    $("#expense_amount").val("0.00")
+    $("#expense_category_name").val("")
+    event.preventDefault();
+  })
+  //end of cancel expense
+
 }
 //end of attachExpenseListeners
 
