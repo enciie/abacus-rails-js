@@ -7,7 +7,6 @@ $(document).ready(function(){
 function createGroup(){
   $("form.new_group").on("submit", function(event){
     event.preventDefault();
-    debugger
     $.ajax({
       type: "POST",
       url: this.action,
@@ -20,7 +19,6 @@ function createGroup(){
           $("#group_name").val("")
           //creates new instance of our group model
           let group = new Group(response)
-          debugger
           // add newly created group to the top of the table
           group.addGroupHtml()
         }
@@ -112,7 +110,6 @@ function attachGroupListeners(){
 
   //groups index page view button
   $("div.group-list-table").on("click", "#eye-icon-group-info", (e)=> {
-    alert("You poked my eye")
     let url = event.target.href + ".json"
     let $div = $("div.group-info")
     let $ol = $("div.group-info ol")

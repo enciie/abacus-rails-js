@@ -25,7 +25,7 @@ Search By Group Name:
         <th><strong>Created By</strong></th>
         <th><strong>Members</strong></th>
         <th><strong>Status</strong></th>
-        <th><strong>View</strong></th>
+        <th><strong>Quick View</strong></th>
       </tr>
     </thead>
 
@@ -33,7 +33,7 @@ Search By Group Name:
 
       <% @groups.recent.each do |group| %>
         <tr>
-          <td><%= group.name %></td>
+          <td><%= link_to group.name, group_path(group)%> </td>
           <td><%= group.users.first.username %></td>
           <td><%= group.user_count %></td>
           <td><%= group.group_status %></td>
