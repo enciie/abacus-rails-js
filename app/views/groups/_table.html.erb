@@ -15,7 +15,7 @@
       <tr>
         <td><%= group.name%></td>
         <td><%= group.group_status %></td>
-        <td><%= link_to "", group_expenses_path(group), class: 'glyphicon glyphicon-eye-open'%></td>
+        <td><%= link_to "", group_path(group), class: 'glyphicon glyphicon-eye-open'%></td>
         <% if group.users.first == current_user %>
           <td><%= link_to "", edit_group_path(group), class: 'glyphicon glyphicon-pencil', id: 'pencil-icon' %></td>
           <td><%= link_to "", group_path(group), method: :delete, data: { confirm: "Are you sure?" }, class: 'glyphicon glyphicon-trash', id: 'trash-icon' %></td>
