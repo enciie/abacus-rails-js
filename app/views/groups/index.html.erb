@@ -33,7 +33,7 @@ Search By Group Name:
 
       <% @groups.recent.each do |group| %>
         <tr>
-          <td><%= link_to group.name, group_path(group)%> </td>
+          <td><%= link_to group.name, group_path(group) %></td>
           <td><%= group.users.first.username %></td>
           <td><%= group.user_count %></td>
           <td><%= group.group_status %></td>
