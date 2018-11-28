@@ -12,11 +12,9 @@
   </head>
 
   <body>
-
     <header>
-    <a href="<%= root_url %>" class = "button" >My Groups</a>
-
     <% if current_user %>
+      <a href="<%= root_url %>" class = "button" >My Groups</a>
       <%= link_to("All Groups", group_list_path, :class => "button")%>
       <%= link_to("Log Out", logout_path, :class => "button") %>
     <% else %>

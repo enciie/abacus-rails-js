@@ -2,7 +2,9 @@ $(document).ready(function(){
   createGroup();
   attachGroupListeners();
   loadAllGroups();
-  searchGroup();
+  if(window.location.href.indexOf("group_list") > -1){
+   searchGroup();
+  }
 })
 //end of document ready
 
@@ -146,6 +148,7 @@ function attachGroupListeners(){
     $.get("/group_list.json", function(response){
       let $table = $("#groups tbody")
       $table.remove();
+      $("#myInput").val("")
       let sortByPopularity = response.sort(function(a, b) {
         var groupA = a.memberships_count
         var groupB = b.memberships_count
