@@ -1,15 +1,31 @@
 $(document).ready(function(){
   createGroup();
   attachGroupListeners();
+  loadAllGroups();
 })
 //end of document ready
 
-function loadMostPopularGroups(){
-  $.get("/most_popular_group_list.json", function(response){
-    debugger
+function loadAllGroups(){
+  $.get("/group_list.json", function(json){
+    json.map(group => {
+      if(group.status === 0){
+        group.status = "Active"
+      } else {
+        group.status = "Inactive"
+      }
+      trHtml = "";
+      trHtml += '<tr><td><a href="/groups/' + group.id + '">' + group.name + '</a></td>'
+      trHtml +='<td>' + group.users[0].username + '</td>'
+      trHtml +='<td>' + group.memberships_count + '</td>'
+      trHtml +='<td>' + group.status + '</td>'
+      trHtml +='<td><a class="glyphicon glyphicon-eye-open" id="eye-icon-group-info" href="/groups/' + group.id + '"></a></td></tr>'
+      $("div.group-list-table table").append(trHtml)
+    })
+    //end of map
   })
+  //end of get call
 }
-//end of sortGroups
+//end of loadAllGroups
 
 function createGroup(){
   $("form.new_group").on("submit", function(event){
@@ -60,53 +76,10 @@ function attachGroupListeners(){
   })
   //end of pencil icon
 
-  // $("div.edit-group div.group-form form.edit_group").on("click", function(event){
-  //   debugger
-  //   console.log(this)
-  //   alert("You clicked me")
-  //   event.preventDefault();
-  //   debugger
-  // })
-  // // end of edit group form
-  //
-  // $("div.groups-container").on("click", "a#trash-icon", (e)=> {
-  // })
-
-  // $("div.groups-container").on("click", "a#trash-icon", (e)=> {
-  //   alert("You clicked me")
-  //   debugger
-  //   e.preventDefault();
-  //   //e.target => <a data-confirm="Are you sure?" class="glyphicon glyphicon-trash" id="trash-icon" rel="nofollow" data-method="delete" href="/groups/165"></a>
-  //   let trashIcon = e.target
-  //   let url = trashIcon.href
-  //   debugger
-  //   // url => "http://localhost:3000/groups/165"
-  //   let groupId = trashIcon.pathname.replace("/groups/", "")
-  //   // groupId = "165"
-  //
-  //   // $.post(url, {id:groupId, action:'delete'});
-  //   debugger
-  //   $.ajax({
-  //     url: url,
-  //     type: 'POST',
-  //     data: {_method: 'delete'}
-  //   })
-  //     .done(function( data ) {
-  //       console.log(data);
-  //     });
-  //   //end of success
-  //     // trashIcon.parentNode.parentElement.remove();
-  // })
-  // // //end of trash icon
-
   //hide/show inactive groups table
   $("#inactive-group-btn").on("click", (e)=> {
     $("div.inactive_groups").toggle();
   });
-
-  // $("div#group-expenses-page").on("click", "#group-summary", (e)=> {
-  //    $("div.group-summary-container").toggle();
-  // });
 
   $("div#group-expenses-page").on("click", "#group-summary-reload", (e)=> {
     let groupId = parseInt($("#group-summary-reload").attr("data-groupid"))
@@ -152,6 +125,8 @@ function attachGroupListeners(){
   $("a#most-popular").on("click", function(e){
     let url = this.href + ".json"
     $.get(url, function(response){
+      let $table = $("#groups tbody")
+      $table.remove();
       let sortByPopularity = response.sort(function(a, b) {
         var groupA = a.memberships_count
         var groupB = b.memberships_count
@@ -178,7 +153,6 @@ function attachGroupListeners(){
         trHtml +='<td>' + group.status + '</td>'
         trHtml +='<td><a class="glyphicon glyphicon-eye-open" id="eye-icon-group-info" href="/groups/' + group.id + '"></a></td></tr>'
         $("div.group-list-table table").append(trHtml)
-
       })
       //end of map
     })
@@ -186,6 +160,7 @@ function attachGroupListeners(){
     e.preventDefault();
   })
   //end of most-popular
+
 
 }
 //end of attachGroupListeners
