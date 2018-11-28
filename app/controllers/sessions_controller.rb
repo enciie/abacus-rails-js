@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     #login with OmniAuth path
     if auth
       @user = User.find_or_create_by(uid: auth['uid']) do |u|
-        u.username = auth['info']['nickname'].titleize
+        u.username = auth['info']['nickname']
         u.email = auth['info']['email']
         u.password = SecureRandom.hex
       end
