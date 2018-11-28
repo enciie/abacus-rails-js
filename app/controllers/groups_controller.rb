@@ -14,7 +14,11 @@ class GroupsController < ApplicationController
     @groups = if params[:term]
       Group.where('name LIKE ?', "%#{params[:term]}%")
     else
-      Group.all
+      @groups = Group.all
+      respond_to do |format|
+        format.html {render :most_popular}
+        format.json {render json: @groups, status: 200}
+      end
     end
   end
 
