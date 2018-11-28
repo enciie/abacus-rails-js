@@ -1,4 +1,4 @@
-<h3>See all groups: <%= link_to "", groups_path, class: 'glyphicon glyphicon-refresh'%></h3>
+<h3>See all groups: <%= link_to "", group_list_path, class: 'glyphicon glyphicon-refresh'%></h3>
 
 Search By Group Name:
 <div class="form-group">
@@ -9,7 +9,7 @@ Search By Group Name:
 </div>
 
 <div class="form-group">
-  <%= link_to "View By Most Popular", most_popular_group_list_path %>
+  <%= link_to "View By Most Popular", most_popular_group_list_path, id: 'most-popular' %>
 </div>
 
 <div class="group-info", id="hidden">
@@ -31,15 +31,15 @@ Search By Group Name:
 
     <tbody>
 
-      <% @groups.recent.each do |group| %>
-        <tr>
-          <td><%= link_to group.name, group_path(group) %></td>
-          <td><%= group.users.first.username %></td>
-          <td><%= group.user_count %></td>
-          <td><%= group.group_status %></td>
-          <td><%= link_to "", group_path(group), class: 'glyphicon glyphicon-eye-open', id: 'eye-icon-group-info'%></td>
-        </tr>
-      <% end %>
+        <!-- <#% @groups.recent.each do |group| %>
+        <!-- <tr>
+          <td><#%= link_to group.name, group_path(group) %></td>
+          <td><#%= group.users.first.username %></td>
+          <td><#%= group.user_count %></td>
+          <td><#%= group.group_status %></td>
+          <td><#%= link_to "", group_path(group), class: 'glyphicon glyphicon-eye-open', id: 'eye-icon-group-info'%></td>
+        </tr> -->
+
     </tbody>
   </table>
 </div>

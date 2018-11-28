@@ -4,6 +4,13 @@ $(document).ready(function(){
 })
 //end of document ready
 
+function loadMostPopularGroups(){
+  $.get("/most_popular_group_list.json", function(response){
+    debugger
+  })
+}
+//end of sortGroups
+
 function createGroup(){
   $("form.new_group").on("submit", function(event){
     event.preventDefault();
@@ -136,12 +143,49 @@ function attachGroupListeners(){
         total += amount
       })
       $div.append("<p> TOTAL: $" + total.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,") + "</p>")
-      debugger
     })
     e.preventDefault();
     //end of get call
   })
   //end of eye-icon-group
+
+  $("a#most-popular").on("click", function(e){
+    let url = this.href + ".json"
+    $.get(url, function(response){
+      let sortByPopularity = response.sort(function(a, b) {
+        var groupA = a.memberships_count
+        var groupB = b.memberships_count
+        if(groupA > groupB){
+          return -1;
+        }
+        if (groupA < groupB) {
+          return 1;
+        }
+        return 0;
+      })
+      //end of sort
+      sortByPopularity.map(group => {
+        //  group = {id: 1, name: "Group 1", status: 0, memberships_count: 2, users: Array(2), …}
+        if(group.status === 0){
+          group.status = "Active"
+        } else {
+          group.status = "Inactive"
+        }
+        trHtml = "";
+        trHtml += '<tr><td><a href="/groups/' + group.id + '">' + group.name + '</a></td>'
+        trHtml +='<td>' + group.users[0].username + '</td>'
+        trHtml +='<td>' + group.memberships_count + '</td>'
+        trHtml +='<td>' + group.status + '</td>'
+        trHtml +='<td><a class="glyphicon glyphicon-eye-open" id="eye-icon-group-info" href="/groups/' + group.id + '"></a></td></tr>'
+        $("div.group-list-table table").append(trHtml)
+
+      })
+      //end of map
+    })
+    //end of get call
+    e.preventDefault();
+  })
+  //end of most-popular
 
 }
 //end of attachGroupListeners
