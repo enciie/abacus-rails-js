@@ -316,3 +316,11 @@ th {
     border-radius: 5px;
     text-align: center;
   }
+
+  #myInput {
+    width: 25%;
+    font-size: 14px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+  }

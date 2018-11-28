@@ -2,6 +2,7 @@ $(document).ready(function(){
   createGroup();
   attachGroupListeners();
   loadAllGroups();
+  searchGroup();
 })
 //end of document ready
 
@@ -27,7 +28,7 @@ function loadAllGroups(){
 }
 //end of loadAllGroups
 
-function createGroup(){
+function createGroup() {
   $("form.new_group").on("submit", function(event){
     event.preventDefault();
     $.ajax({
@@ -54,6 +55,25 @@ function createGroup(){
   })
 }
 //end of createGroup
+
+function searchGroup() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("groups");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
 
 function attachGroupListeners(){
   //clears input on form
@@ -122,9 +142,8 @@ function attachGroupListeners(){
   })
   //end of eye-icon-group
 
-  $("a#most-popular").on("click", function(e){
-    let url = this.href + ".json"
-    $.get(url, function(response){
+  $("a#most-popular").on("click", (e)=> {
+    $.get("/group_list.json", function(response){
       let $table = $("#groups tbody")
       $table.remove();
       let sortByPopularity = response.sort(function(a, b) {
@@ -160,7 +179,6 @@ function attachGroupListeners(){
     e.preventDefault();
   })
   //end of most-popular
-
 
 }
 //end of attachGroupListeners

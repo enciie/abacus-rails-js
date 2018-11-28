@@ -1,12 +1,6 @@
 <h3>See all groups: <%= link_to "", group_list_path, class: 'glyphicon glyphicon-refresh'%></h3>
 
-Search By Group Name:
-<div class="form-group">
-  <%= form_tag(group_list_path, method: :get) do %>
-    <%= text_field_tag :term, params[:term]%>
-    <%= submit_tag 'Search', name: nil %>
-  <% end %>
-</div>
+<input type="text" id="myInput" onkeyup="searchGroup()" placeholder="Search for groups.." title="Type in a group">
 
 <div class="form-group">
   <%= link_to "View By Most Popular", most_popular_group_list_path, id: 'most-popular' %>
