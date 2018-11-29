@@ -1,8 +1,6 @@
 $(document).ready(function(){
-   //loads only on the groups show page
-  if(window.location.href.indexOf("groups") > -1){
-   loadExpenses();
-  }
+  //loads only on the groups show page
+  loadExpenses();
   attachExpenseListeners()
 })
 //end of document ready
@@ -58,8 +56,8 @@ function attachExpenseListeners(){
   })
   //end of pencil icon
 
-  $(".wrapper").on("click", "#previous-button", function(e) {
-    e.preventDefault();
+  $(".wrapper").on("click", "#previous-button", function(event) {
+    event.preventDefault();
     let previousId = parseInt($("#previous-button").attr("data-groupid"))-1
     let url = "/groups/" + previousId + ".json"
     let urlSummary = "/groups/" + previousId
@@ -80,8 +78,8 @@ function attachExpenseListeners(){
   })
   // end of previous-button
 
-  $(".wrapper").on("click", "#next-button", function(e) {
-    e.preventDefault();
+  $(".wrapper").on("click", "#next-button", function(event) {
+    event.preventDefault();
     let nextId = parseInt($("#previous-button").attr("data-groupid"))+1
     let url = "/groups/" + nextId + ".json"
     let urlSummary = "/groups/" + nextId
@@ -104,17 +102,29 @@ function attachExpenseListeners(){
 }
 //end of attachExpenseListeners
 
-// Loads all expenses
 function loadExpenses(){
-  let url = this.location.href
-  // "http://localhost:3000/groups/4"
-  url += ".json"
-  $.get(url, function(json){
-    updateTableHtml(json)
+  $("div.exp-container").ready(function(){
+    let url = this.location.href
+    url += ".json"
+    // "http://localhost:3000/groups/4"
+    $.get(url, function(json){
+      updateTableHtml(json)
+    })
   })
-  //end of get call
 }
-// end of loadExpenses
+//end of loadExpenses
+
+// // Loads all expenses
+// function loadExpenses(){
+//   let url = this.location.href
+//   // "http://localhost:3000/groups/4"
+//   url += ".json"
+//   $.get(url, function(json){
+//     updateTableHtml(json)
+//   })
+//   //end of get call
+// }
+// // end of loadExpenses
 
 function updateTableHtml(json){
   let amount = "";
