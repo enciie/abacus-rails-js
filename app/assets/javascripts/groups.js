@@ -15,7 +15,7 @@ function loadAllGroups(){
       } else {
         group.status = "Inactive"
       }
-      trHtml = `<tr><td><a href="/groups/${group.id}">${group.name}</a></td>
+      let trHtml = `<tr><td><a href="/groups/${group.id}">${group.name}</a></td>
                <td>${group.users[0].username}</td>
                <td>${group.memberships_count}</td>
                <td>${group.status}</td>
@@ -164,11 +164,13 @@ function attachGroupListeners(){
         } else {
           group.status = "Inactive"
         }
-        trHtml = `<tr><td><a href="/groups/${group.id}">${group.name}</a></td>
+        let trHtml = `<tr>
+                <td><a href="/groups/${group.id}">${group.name}</a></td>
                 <td> ${group.users[0].username} </td>
                 <td> ${group.memberships_count} </td>
                 <td> ${group.status} </td>
-                <td><a class="glyphicon glyphicon-eye-open" id="eye-icon-group-info" href="/groups/${group.id} "></a></td></tr>`
+                <td><a class="glyphicon glyphicon-eye-open" id="eye-icon-group-info" href="/groups/${group.id} "></a></td>
+                </tr>`
         $("div.group-list-table table").append(trHtml)
       }) //end of map
     }) //end of get call
@@ -191,10 +193,12 @@ class Group {
   //Sets a method on object prototype
   addGroupHtml(){
       // adds the newly created group to top of the table
-      let trHTML = `<tr><td> ${this.name} </td><td> ${this.status} </td>
+      let trHTML = `<tr>
+                  <td> ${this.name} </td><td> ${this.status} </td>
                   <td><a class="glyphicon glyphicon-eye-open" id="eye-icon" href="/groups/${this.id}"></a></td>
                   <td><a class="glyphicon glyphicon-pencil" id="pencil-icon" href="/groups/${this.id}/edit"></td>
-                  <td><a data-confirm="Are you sure?" class="glyphicon glyphicon-trash" id="trash-icon" rel="nofollow" data-method="delete" href="/groups/${this.id}"></a></td></tr>`
+                  <td><a data-confirm="Are you sure?" class="glyphicon glyphicon-trash" id="trash-icon" rel="nofollow" data-method="delete" href="/groups/${this.id}"></a></td>
+                  </tr>`
       if (this.status === "Active") {
         $("div.active_groups table").prepend(trHTML)
       } else {
