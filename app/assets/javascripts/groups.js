@@ -74,7 +74,7 @@ function groupInfoHtml(group){
   let total = 0;
   let users = group.users
   let expenses = group.expenses
-  let infoHtml = `<h3> ${group.name}</h3><h5> Group Members: </h5>`
+  let infoHtml = `<h3><a href="/groups/${group.id}">${group.name}</a></h3><h5> Group Members: </h5>`
   $div.append(infoHtml)
 
   users.forEach(function(user){
@@ -127,7 +127,7 @@ function attachGroupListeners(){
     $("div.group-summary-tables").load(url + " div.group-summary-tables" );
   });  //end of group-summary reload
 
-  //groups index page view button
+  //groups index page view button quick view
   $("div.group-list-table").on("click", "#eye-icon-group-info", (event)=> {
     let url = event.target.href + ".json"
     let $div = $("div.group-info")
