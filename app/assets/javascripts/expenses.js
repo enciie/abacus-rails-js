@@ -1,6 +1,8 @@
 $(document).ready(function(){
-  //loads only on the groups show page
-  loadExpenses();
+   //loads only on the groups show page
+  if(window.location.href.indexOf("groups") > -1){
+   loadExpenses();
+  }
   attachExpenseListeners()
 })
 //end of document ready
@@ -113,18 +115,6 @@ function loadExpenses(){
   })
 }
 //end of loadExpenses
-
-// // Loads all expenses
-// function loadExpenses(){
-//   let url = this.location.href
-//   // "http://localhost:3000/groups/4"
-//   url += ".json"
-//   $.get(url, function(json){
-//     updateTableHtml(json)
-//   })
-//   //end of get call
-// }
-// // end of loadExpenses
 
 function updateTableHtml(json){
   let amount = "";
