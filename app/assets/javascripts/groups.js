@@ -115,19 +115,19 @@ function attachGroupListeners(){
   }) //end of pencil icon
 
   //hide/show inactive groups table
-  $("#inactive-group-btn").on("click", (e)=> {
+  $("#inactive-group-btn").on("click", ()=> {
     $("div.inactive_groups").toggle();
   }); //end of hide/show
 
   //reloads the group summary with updated info
-  $("div#group-expenses-page").on("click", "#group-summary-reload", (e)=> {
+  $("div#group-expenses-page").on("click", "#group-summary-reload", ()=> {
     let groupId = parseInt($("#group-summary-reload").attr("data-groupid"))
     let url = "/groups/" + groupId
     $("div.group-summary-tables").load(url + " div.group-summary-tables" );
   });  //end of group-summary reload
 
   //groups index page view button
-  $("div.group-list-table").on("click", "#eye-icon-group-info", (e)=> {
+  $("div.group-list-table").on("click", "#eye-icon-group-info", (event)=> {
     let url = event.target.href + ".json"
     let $div = $("div.group-info")
     $div.show()
@@ -136,10 +136,10 @@ function attachGroupListeners(){
     $.get(url, function(json){
       groupInfoHtml(json);
     }) //end of get call
-    e.preventDefault();
+    event.preventDefault();
   })  //end of eye-icon-group
 
-  $("a#most-popular").on("click", (e)=> {
+  $("a#most-popular").on("click", (event)=> {
     $.get("/group_list.json", function(response){
       let $table = $("#groups tbody")
       $table.remove();
@@ -174,7 +174,7 @@ function attachGroupListeners(){
         $("div.group-list-table table").append(trHtml)
       }) //end of map
     }) //end of get call
-    e.preventDefault();
+    event.preventDefault();
   }) //end of most-popular
 
 } //end of attachGroupListeners
