@@ -26,8 +26,8 @@ function attachExpenseListeners(){
         //if the total is empty, for the first expense
         $("div.total").html(`<h3> TOTAL $${expense.amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}</h3>`)
         } else {
-          expense.updateTotalHtml();
           //updates the total amount
+          expense.updateTotalHtml();
         } //end of if/else
       } //end of success
     }) //end of ajax
@@ -134,7 +134,7 @@ function updateTableHtml(json){
   } //end of updateTableHtml
 
 function formatDate(date) {
-  var d = new Date(date)
+  const d = new Date(date)
       month = '' + (d.getMonth() + 1),
       day = '' + d.getDate(),
       year = d.getFullYear();

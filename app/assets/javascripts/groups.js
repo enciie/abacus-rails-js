@@ -2,8 +2,8 @@ $(document).ready(function(){
   createGroup();
   attachGroupListeners();
   if(window.location.href.indexOf("group_list") > -1){
-   searchGroup();
-   loadAllGroups();
+    searchGroup();
+    loadAllGroups();
   }
 }) //end of document ready
 
@@ -40,7 +40,7 @@ function createGroup() {
           $("#group_name").val("")
           $("div.flash_notice").html("")
           //creates new instance of our group model
-          let group = new Group(response)
+          const group = new Group(response)
           // add newly created group to the top of the table
           group.addGroupHtml()
         } //end of if/else
@@ -51,7 +51,8 @@ function createGroup() {
 } //end of createGroup
 
 function searchGroup() {
-  var input, filter, table, tr, td, i, txtValue;
+  //variable declared, not yet assigned
+  let input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
   table = document.getElementById("groups");
@@ -88,7 +89,7 @@ function groupInfoHtml(group){
     total += amount
   })
   $div.append(`<p> TOTAL: $ ${total.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}</p>`)
-} //end of groupInfoHtml
+} //end of groupInfoHtml\
 
 function attachGroupListeners(){
 
@@ -98,7 +99,7 @@ function attachGroupListeners(){
     event.preventDefault();
   }) //end of cancel-group
 
-  $("div.edit-group").on("click", "#cancel-group", function(event) {
+  $("div.edit-group").on("click", "#cancel-group", (event)=> {
     $(".group-form").show();
     $(".edit-group").html("");
     event.preventDefault();
@@ -129,14 +130,14 @@ function attachGroupListeners(){
 
   //groups index page view button quick view
   $("div.group-list-table").on("click", "#eye-icon-group-info", (event)=> {
-    let url = event.target.href + ".json"
+    let url = event.target.href
     let $div = $("div.group-info")
     $div.show()
     $div.html("")
     // "http://localhost:3000/groups/31.json"
     $.get(url, function(json){
       groupInfoHtml(json);
-    }) //end of get call
+    },"JSON") //end of get call
     event.preventDefault();
   })  //end of eye-icon-group
 
@@ -147,12 +148,21 @@ function attachGroupListeners(){
       $("div.group-info").hide();
       $("#myInput").val("")
       let sortByPopularity = response.sort(function(a, b) {
-        var groupA = a.memberships_count
-        var groupB = b.memberships_count
+        let groupA = a.memberships_count
+        let groupB = b.memberships_count
+        let groupNameA = a.name
+        let groupNameB = b.name
+
         if(groupA > groupB){
           return -1;
         }
         if (groupA < groupB) {
+          return 1;
+        }
+        if(groupNameA < groupNameB){
+          return -1;
+        }
+        if (groupNameA > groupNameB) {
           return 1;
         }
         return 0;
@@ -191,7 +201,7 @@ class Group {
     } //end of if/else
   } //end of constructor
 
-  //Sets a method on object prototype
+  //Sets an instance method on object prototype
   addGroupHtml(){
       // adds the newly created group to top of the table
       let trHTML = `<tr>
