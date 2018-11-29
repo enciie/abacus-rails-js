@@ -4,8 +4,7 @@ $(document).ready(function(){
    loadExpenses();
   }
   attachExpenseListeners()
-})
-//end of document ready
+}) //end of document ready
 
 function attachExpenseListeners(){
   //Submits new expenses
@@ -29,21 +28,16 @@ function attachExpenseListeners(){
         } else {
           expense.updateTotalHtml();
           //updates the total amount
-        }
-        //end of if/else
-      }
-      //end of success
-    });
-    //end of ajax
+        } //end of if/else
+      } //end of success
+    }) //end of ajax
     return false;
-  })
-  //end of submit new expense
+  }) //end of submit new expense
 
   $("#cancel-add-expense").on("click", function(event) {
     emptyInput();
     event.preventDefault();
-  })
-  //end of cancel expense
+  }) //end of cancel expense
 
   //pencil icon - edit expense
   $("div.exp-container").on("click", "a#pencil-icon", function(event) {
@@ -53,10 +47,8 @@ function attachExpenseListeners(){
     $.get(url, function(response){
       $(".expense-form-container").hide();
       $(".edit-expense").html(response)
-    })
-    // end of get call
-  })
-  //end of pencil icon
+    }) // end of get call
+  }) //end of pencil icon
 
   $(".wrapper").on("click", "#previous-button", function(event) {
     event.preventDefault();
@@ -75,10 +67,8 @@ function attachExpenseListeners(){
       updateTableHtml(json)
       //reloads the div group-summary-tables based on the urlSummary
       $("div.group-summary-tables").load(urlSummary + " div.group-summary-tables" );
-    })
-    //end of get call
-  })
-  // end of previous-button
+    }) //end of get call
+  }) // end of previous-button
 
   $(".wrapper").on("click", "#next-button", function(event) {
     event.preventDefault();
@@ -96,25 +86,19 @@ function attachExpenseListeners(){
       $("div.total").html("");
       updateTableHtml(json)
       $("div.group-summary-tables").load(urlSummary + " div.group-summary-tables" );
-    })
-    //end of get call
-  })
-  // end of next-button
+    }) //end of get call
+  }) // end of next-button
 
-}
-//end of attachExpenseListeners
+} //end of attachExpenseListeners
 
 function loadExpenses(){
-  $("div.exp-container").ready(function(){
     let url = this.location.href
     url += ".json"
     // "http://localhost:3000/groups/4"
     $.get(url, function(json){
       updateTableHtml(json)
     })
-  })
-}
-//end of loadExpenses
+} //end of loadExpenses
 
 function updateTableHtml(json){
   let amount = "";
@@ -140,8 +124,7 @@ function updateTableHtml(json){
       totalHTML += '<h3> TOTAL $' + total.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,") + '</h3>'
       $("div.total").html($(totalHTML));
     }
-  }
-  //end of updateTableHtml
+  } //end of updateTableHtml
 
 function formatDate(date) {
   var d = new Date(date)
@@ -153,8 +136,7 @@ function formatDate(date) {
   if (day.length < 2) day = '0' + day;
 
   return [month, day, year].join('/');
-}
-// end of formatDate
+} // end of formatDate
 
 function emptyInput() {
   $("#expense_description").val("")
@@ -174,8 +156,7 @@ function updateGroupId(newGroupId){
   $("#groups-exp").attr("data-groupid", newGroupId)
   //update group summary
   $("#group-summary-reload").attr("data-groupid", newGroupId)
-}
-//end of UpdateGroupID
+} //end of UpdateGroupID
 
 class Expense{
   constructor(json) {
@@ -185,8 +166,7 @@ class Expense{
     this.date = formatDate(json.created_at);
     this.category_name = json.category.name;
     this.groupId = json.group.id;
-  }
-  //end of constructor
+  } //end of constructor
 
   addExpenseHtml(){
     // adds the newly created expense to bototm of the table
@@ -196,8 +176,7 @@ class Expense{
     trHTML += '<td>' + `<a class="glyphicon glyphicon-pencil" id="pencil-icon" href="/groups/${this.groupId}/expenses/${this.id}/edit">` + '</td>'
     trHTML += '<td>' + `<a data-confirm="Are you sure?" class="glyphicon glyphicon-trash" id="trash-icon" rel="nofollow" data-method="delete" href="/groups/${this.groupId}/expenses/${this.id}"></a>` + '</td></tr>';
     $("#groups-exp").append(trHTML)
-  }
-  //end of prototype addExpenseHtml
+  } //end of prototype addExpenseHtml
 
   updateTotalHtml(){
     // updates the total amount
@@ -209,8 +188,6 @@ class Expense{
     total = total.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")
     let totalHTML = '<h3>TOTAL $' + total + '</h3>'
     $total.html($(totalHTML));
-  }
-  //end of prototype updateTotalHtml
+  } //end of prototype updateTotalHtml
 
-}
-//end of class Expense
+} //end of class Expense
