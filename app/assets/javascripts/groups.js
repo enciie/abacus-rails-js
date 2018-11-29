@@ -1,9 +1,9 @@
 $(document).ready(function(){
   createGroup();
   attachGroupListeners();
-  loadAllGroups();
   if(window.location.href.indexOf("group_list") > -1){
    searchGroup();
+   loadAllGroups();
   }
 }) //end of document ready
 
