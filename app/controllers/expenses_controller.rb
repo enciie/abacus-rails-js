@@ -28,7 +28,7 @@ class ExpensesController < ApplicationController
       @expense = @group.expenses.new
       respond_to do |format|
         format.html {render :new}
-        format.json {render json: @expense}
+        format.json {render json: @expense, status: 200}
       end
     else
       redirect_to groups_path

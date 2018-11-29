@@ -52,7 +52,7 @@ class GroupsController < ApplicationController
         @membership.save
       end
       flash[:notice] = "Successfully Created A Group"
-      render json: @group
+      render json: @group, status: 200
     end
   end
 

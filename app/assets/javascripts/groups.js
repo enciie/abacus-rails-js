@@ -38,6 +38,7 @@ function createGroup() {
         } else {
           //empties the input after successful action
           $("#group_name").val("")
+          $("div.flash_notice").html("")
           //creates new instance of our group model
           let group = new Group(response)
           // add newly created group to the top of the table
