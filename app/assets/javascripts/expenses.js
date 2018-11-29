@@ -43,7 +43,7 @@ function attachExpenseListeners(){
     $(".expense-form-container").show();
     $(".edit-expense").html("");
     event.preventDefault();
-  }) //end of cancel expense
+  }) //end of cancel edit expense
 
   //pencil icon - edit expense
   $("div.exp-container").on("click", "a#pencil-icon", function(event) {

@@ -100,6 +100,12 @@ function attachGroupListeners(){
     event.preventDefault();
   }) //end of cancel-group
 
+  $("div.edit-group").on("click", "#cancel-group", function(event) {
+    $(".group-form").show();
+    $(".edit-group").html("");
+    event.preventDefault();
+  }) //end of cancel edit group
+
   $("div.groups-container").on("click", "a#pencil-icon", (event)=> {
     event.preventDefault();
     $("#flash_notice").html("")
