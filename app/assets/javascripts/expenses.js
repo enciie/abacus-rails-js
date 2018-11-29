@@ -39,6 +39,12 @@ function attachExpenseListeners(){
     event.preventDefault();
   }) //end of cancel expense
 
+  $("div.edit-expense").on("click", "#cancel-add-expense", function(event) {
+    $(".expense-form-container").show();
+    $(".edit-expense").html("");
+    event.preventDefault();
+  }) //end of cancel expense
+
   //pencil icon - edit expense
   $("div.exp-container").on("click", "a#pencil-icon", function(event) {
     event.preventDefault();
@@ -165,13 +171,11 @@ class Expense{
     this.amount = json.amount;
     this.date = formatDate(json.created_at);
     this.category_name = json.category.name;
-    debugger
     this.groupId = json.group.id;
   } //end of constructor
 
   addExpenseHtml(){
     // adds the newly created expense to bototm of the table
-    debugger
     let trHTML = "";
     trHTML += '<tr><td>' + this.description + '</td><td> $' + this.amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,") + '</td><td>'
     trHTML += this.date + '</td><td>' + this.category_name + '</td>'
