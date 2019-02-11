@@ -2,6 +2,10 @@
 
 Abacus is a web application to keep track of all their personal expenses. It is a rails web application where users can create and join groups created by other members, and split expenses.
 
+https://abacus-expense-tracker.herokuapp.com
+username: Demo
+password: password
+
 ![abacus](https://user-images.githubusercontent.com/35680513/52546577-75114380-2d75-11e9-9607-815b62ff516a.jpg)
 
 ## Installation
