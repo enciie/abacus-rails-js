@@ -14,6 +14,8 @@ module AbacusRailsProject
     # config/application.rb
     config.assets.initialize_on_precompile = false
 
+    config.secret_key_base = '<%= ENV["SECRET_KEY_BASE"] %>'
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
