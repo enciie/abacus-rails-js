@@ -2,11 +2,6 @@
   <% if @group.users.include?(current_user) %>
   <h1 data-groupId="<%= @group.id %>", id="group-name"><%= @group.name%></h1>
 
-  <section class="next-previous">
-    <!-- next/previous buttons -->
-    <a href="#" class="js-more button", data-groupid="<%= @group.id %>", id="previous-button">Previous Group</a>
-    <a href="#" class="js-more button", data-groupid="<%= @group.id %>", id="next-button">Next Group</a><br>
-  </section>
   <br>
 
   <div class="exp-container">

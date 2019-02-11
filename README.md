@@ -1,6 +1,6 @@
 # Abacus Expense Tracker Rails App
 
-Flatiron Rails project. This app is to help a user keep track of all their personal expenses.
+Abacus is a web application to keep track of all their personal expenses. It is a rails web application where users can create and join groups created by other members, and split expenses.
 
 ## Installation
 Fork and clone repo:
